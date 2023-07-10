@@ -36,12 +36,12 @@ module.exports = {
         <header>
             <div class="container" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500">
                 <div class="row">
-                    <a href="index.html" title="KarT's House">
+                    <a href="/" title="KarT's House">
                         <img src="./assets/images/logo.svg" alt="">
                     </a>
                     <div class="navbar-toggle">
                         <div class="login">
-                            <a href="">
+                            <a href="/cart">
                                 <button title="Giỏ hàng">
                                     <i class="fa-solid fa-cart-shopping bounceIn"></i>
                                 </button>
