@@ -1,0 +1,367 @@
+:root {
+    --primary: #FFB74D;
+    --secondary: #A66D56;
+}
+
+::selection {
+    background-color: var(--secondary);
+    color: #fff;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url(../images/pattern-a.png);
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.container {
+    display: block;
+    max-width: 1280px;
+    width: 100%;
+    padding: 0 16px;
+    margin: 0 auto;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #111;
+}
+
+button {
+    outline: none;
+    border: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fixed-top {
+    background-image: url(../images/pattern-a.png);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.back-to-top {
+    display: none;
+}
+
+.back-to-top.show.animated.infinite.pulse {
+    position: fixed;
+    bottom: 5%;
+    right: 3%;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 111;
+}
+
+.back-to-top:hover {
+    background-color: var(--secondary);
+}
+
+.show {
+    display: block;
+}
+
+.active {
+    color: var(--primary);
+}
+
+.overlay {
+    display: none;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+}
+
+header .row {
+    display: grid;
+    grid-template: auto / 250px 1fr;
+    align-items: center;
+    justify-content: space-around;
+    padding: 24px 0;
+}
+
+header .row img {
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-bar {
+    padding-left: 16%;
+}
+
+.login {
+    padding-right: 2%;
+}
+
+.nav-bar a,
+.login button,
+.navbar-toggle button {
+    padding: 8px 16px;
+}
+
+.nav-bar a:hover {
+    text-decoration: underline;
+    color: var(--primary);
+}
+
+.login button,
+.navbar-toggle button {
+    border: 1px solid lightgrey;
+    background-color: transparent;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.login button:hover,
+.navbar-toggle button:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.navbar-toggle,
+.nav-img,
+.nav-logo {
+    display: none;
+}
+
+/* section */
+
+section {
+    padding-bottom: 6em;
+    overflow: hidden;
+}
+
+section:first-child {
+    padding-top: 8em;
+}
+
+
+/* footer */
+.footer {
+    border-top: 1px solid var(--primary);
+    border-bottom: 1px solid var(--primary);
+}
+
+.footer .row {
+    display: grid;
+    grid-template: auto / 250px 1fr 1fr 1fr;
+    align-items: center;
+    grid-gap: 16px;
+    padding: 26px 0;
+}
+
+.footer .img img {
+    max-width: 80%;
+    display: block;
+    margin: auto;
+}
+
+.footer .name {
+    color: var(--secondary);
+}
+
+.footer .col {
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 2.2;
+}
+
+.footer a {
+    font-size: 14px;
+    line-height: 3.5;
+}
+
+.footer div a:nth-child(2) {
+    margin-left: 12px;
+}
+
+.footer .content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+}
+
+.footer .content i {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.copyright {
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+    color: var(--secondary);
+}
+
+@media (max-width:1023px) {
+
+    /* header */
+    header nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 999;
+        width: 300px;
+        height: 100vh;
+        box-shadow: 4px 0 10px 1px rgba(0, 0, 0, .15);
+        background: #fff;
+        padding: 5% 0 0;
+        display: none;
+    }
+
+    header nav .nav-bar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    header .nav-bar a {
+        padding-bottom: 16px;
+    }
+
+    header nav .login {
+        display: none;
+    }
+
+    header .navbar-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    header .row {
+        width: 100%;
+        display: grid;
+        grid-template: auto / 40% 1fr;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 16px 0;
+    }
+
+    header .row img {
+        width: 100%;
+        max-width: 180px;
+        display: block;
+    }
+
+    header .login {
+        padding-right: 1%;
+    }
+
+    header .overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, .5);
+        z-index: 11;
+    }
+
+    header .nav-img {
+        display: block;
+        background: #fff no-repeat center;
+        background-size: cover;
+        aspect-ratio: 1/1;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 48px;
+    }
+
+    header .nav-logo {
+        display: block;
+        width: 100%;
+        margin-bottom: 48px;
+    }
+
+    /* footer */
+
+    footer .footer .row {
+        display: block;
+        text-align: left;
+    }
+
+    footer .footer .row img {
+        width: 180px;
+        max-width: 100%;
+        margin-left: 17px;
+    }
+
+    footer .footer .row .col {
+        margin: 16px;
+    }
+
+    footer .footer .col .content div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer .footer a {
+        line-height: 2.8;
+    }
+
+    footer .footer div a:nth-child(2) {
+        margin-left: 0;
+    }
+
+    footer .footer .twitter {
+        margin-left: 0 !important;
+    }
+
+    footer .copyright {
+        padding: 20px 0;
+        font-size: 14px;
+    }
+
+    section {
+        padding-bottom: 2em;
+        border-bottom: 1px solid var(--primary);
+    }
+
+    section:first-child {
+        padding-top: 6em;
+    }
+
+    section:last-child {
+        padding-bottom: 1em;
+        border-bottom: none;
+    }
+}
