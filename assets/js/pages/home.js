@@ -1,7 +1,7 @@
 export async function render() {
   let template = document.createElement("div");
   template.innerHTML = `
-    <section class="home">
+        <section>
         <div class="container title" style="min-height: 550px;" data-aos="fade-down" data-aos-easing="linear"
             data-aos-duration="500">
             <div class="content">
@@ -25,8 +25,8 @@ export async function render() {
                 <div class="item" style="background-image: url(./assets/images/cake/store-3.jpg);"></div>
             </div>
         </div>
-    </section>
-    <section class="home">
+        </section>
+        <section>
         <div class="container title left" style="min-height: 450px;" data-aos="fade-left" data-aos-easing="linear"
             data-aos-duration="500">
             <div class="img" style="background-image: url(./assets/images/cake/cake-7.jpg);"></div>
@@ -37,8 +37,8 @@ export async function render() {
                     những lớp bạt xốp mềm, lớp kem thơm ngậy và hương vị đặc trưng của trái cây tươi.</p>
             </div>
         </div>
-    </section>
-    <section class="home">
+        </section>
+        <section>
         <div class="container title" style="min-height: 420px;" data-aos="fade-right" data-aos-easing="linear"
             data-aos-duration="500">
             <div class="content">
@@ -51,8 +51,8 @@ export async function render() {
             </div>
             <div class="img" style="background-image: url(./assets/images/cake/cake-5.jpg);"></div>
         </div>
-    </section>
-    <section class="home">
+        </section>
+        <section>
         <div class="container title left" style="min-height: 500px;" data-aos="fade-left" data-aos-easing="linear"
             data-aos-duration="500">
             <div class="img" style="background-image: url(./assets/images/cake/cake-10.jpg);"></div>
@@ -62,9 +62,8 @@ export async function render() {
                     chỉnh chu để ai cũng có thể nhận về những niềm vui khi bánh được giao tới tận nơi.</p>
             </div>
         </div>
-    </section>
+        </section>
     `;
-
   let jqueryScript = document.createElement("script");
   jqueryScript.src = "./assets/js/components/jquery-3.7.0.min.js";
   jqueryScript.async = true;
@@ -72,16 +71,22 @@ export async function render() {
     let owlCarouselScript = document.createElement("script");
     owlCarouselScript.src = "./assets/libs/owlcarousel/owl.carousel.min.js";
     owlCarouselScript.async = true;
+    owlCarouselScript.onload = function () {
+      let mainScript = document.createElement("script");
+      mainScript.src = "./assets/js/main.js";
+      mainScript.async = true;
+      document.body.appendChild(mainScript);
+    };
     document.body.appendChild(owlCarouselScript);
   };
   document.body.appendChild(jqueryScript);
 
-  let script = document.createElement("script");
-  script.src = "./assets/libs/aos-master/aos.js";
-  script.async = true;
-  document.body.appendChild(script);
+  let aosScript = document.createElement("script");
+  aosScript.src = "./assets/libs/aos-master/aos.js";
+  aosScript.async = true;
+  document.head.appendChild(aosScript);
 
-  script.onload = function () {
+  aosScript.onload = function () {
     AOS.init();
   };
 

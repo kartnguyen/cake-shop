@@ -28,14 +28,13 @@ module.exports = {
         <link rel="stylesheet" href="./assets/libs/owlcarousel/assets/owl.theme.default.min.css">
         <!-- main css -->
         <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/css/load.css">
         <!-- home css -->
         <link rel="stylesheet" href="./assets/css/home.css">
     </head>
     
     <body>
         <header>
-            <div class="container" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500">
+            <div class="container">
                 <div class="row">
                     <a href="/" title="KarT's House">
                         <img src="./assets/images/logo.svg" alt="">
@@ -65,7 +64,7 @@ module.exports = {
                         </div>
                         <div class="login">
                             <a href="/cart">
-                                <button title="Giỏ hàng">
+                                <button title="Giỏ hàng" class="cart">
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </button>
                             </a>
@@ -74,11 +73,11 @@ module.exports = {
                         <div class="nav-img" style="background-image: url(./assets/images/nav-bar.webp);"></div>
                     </nav>
                 </div>
-            </div>
+            </div>    
         </header>
-        <main id="app">
-            
-        </main>
+
+        <main></main>
+
         <footer>
             <div class="container footer">
                 <div class="row">
@@ -133,7 +132,7 @@ module.exports = {
                         </div>
                     </div>
                 </div>
-    
+
             </div>
             <div class="container">
                 <div class="copyright">
@@ -141,20 +140,15 @@ module.exports = {
                 </div>
             </div>
         </footer>
+
         <a class="back-to-top" href="#" title="Lên đầu trang">
             <i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
         </a>
-        <script src="./assets/js/components/jquery-3.7.0.min.js"></script>
-        <script src="./assets/libs/owlcarousel/owl.carousel.min.js"></script>
-        <script src="./assets/libs/aos-master/aos.js"></script>
-        <script src="./assets/js/main.js"></script>
-        <script>
-            AOS.init();
-        </script>
         <script type="module" src="./assets/js/render.js"></script>
     </body>
     
     </html>
     `;
+
   }
 }

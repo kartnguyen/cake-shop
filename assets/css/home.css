@@ -77,4 +77,8 @@
     .title .img {
         margin-bottom: 1em;
     }
+    .title .owl-carousel .owl-stage-outer .owl-item {
+        height: auto;
+        width: 100%;
+    }
 }

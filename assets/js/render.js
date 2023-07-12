@@ -1,11 +1,12 @@
 import { loading } from "./components/load.js";
 import { removeLoader } from "./components/help.js";
 
-let app = document.querySelector("#app");
+let app = document.querySelector("main");
 
 async function init_app() {
   app.appendChild(loading.cake_gif());
-  setTimeout(removeLoader, 3500);
+  setTimeout(removeLoader, 3600);
+
   if (location.pathname == "/") {
     let page = await import("./pages/home.js");
     let render = await page.render();
