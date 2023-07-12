@@ -278,8 +278,11 @@ section:first-child {
         width: 100%;
         max-width: 180px;
         display: block;
+        margin: 0;
     }
-
+    header .nav-logo img {
+        margin: 0 auto !important;
+    }
     header .login {
         padding-right: 1%;
     }

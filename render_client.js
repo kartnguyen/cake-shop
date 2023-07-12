@@ -28,6 +28,7 @@ module.exports = {
         <link rel="stylesheet" href="./assets/libs/owlcarousel/assets/owl.theme.default.min.css">
         <!-- main css -->
         <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="./assets/css/load.css">
         <!-- home css -->
         <link rel="stylesheet" href="./assets/css/home.css">
     </head>
@@ -75,7 +76,7 @@ module.exports = {
                 </div>
             </div>
         </header>
-        <main>
+        <main id="app">
             
         </main>
         <footer>
@@ -110,21 +111,21 @@ module.exports = {
                         </div>
                         <div class="content">
                             <div>
-                                <a href="#">
+                                <a href="https://www.facebook.com/">
                                     <i class="fa-brands fa-facebook fa-2x" style="color: #453cedc6;"></i>
                                     Facebook
                                 </a>
-                                <a href="#">
+                                <a href="https://www.instagram.com/">
                                     <i class=" fa-2x fa-brands fa-instagram" style="color: #ff6d2e;"></i>
                                     Instagram
                                 </a>
                             </div>
                             <div class="social">
-                                <a href="#">
+                                <a href="https://www.youtube.com/">
                                     <i class="fa-2x fa-brands fa-youtube" style="color: #d70f0f;"></i>
                                     Youtube
                                 </a>
-                                <a href="#" style="margin-left: 18px;" class="twitter">
+                                <a href="https://twitter.com/" style="margin-left: 18px;" class="twitter">
                                     <i class="fa-2x fa-brands fa-twitter" style="color: #57e3ff;"></i>
                                     Twitter
                                 </a>
@@ -150,6 +151,7 @@ module.exports = {
         <script>
             AOS.init();
         </script>
+        <script type="module" src="./assets/js/render.js"></script>
     </body>
     
     </html>

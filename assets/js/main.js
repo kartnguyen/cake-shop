@@ -1,12 +1,11 @@
-const api_url = "https://64a662ab096b3f0fcc7fa7e0.mockapi.io/";
-
-function check_width () {
-  if (screen.width < 1023) {
+window.addEventListener("resize", function (e) {
+  if (window.innerWidth > 1023) {
     document.querySelector("nav").className = '';
-    console.log('asds')
+    if(document.querySelector(".overlay")){
+      document.querySelector(".overlay").remove();
+    }
   }
-}
-check_width();
+});
 
 window.addEventListener("scroll", function (e) {
   if (window.pageYOffset > 20) {
