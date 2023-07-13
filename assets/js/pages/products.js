@@ -19,9 +19,9 @@ export async function render() {
         <div class="grid">
           <div class="side_bar">
               <ul>
-                  <li>banh 1</li>
-                  <li>banh 2</li>
-                  <li>banh 3</li>
+                  <li class="filter active">All</li>
+                  <li class="filter">Mood Cake</li>
+                  <li class="filter">Lover Cake</li>
               </ul>
           </div>
           <div class="products">
@@ -38,14 +38,15 @@ export async function render() {
       let div = document.createElement("div");
       div.classList.add("item");
       div.innerHTML = `
-          <div class="img" style="background-image: url(${image[0]});">
-          </div>
+          <a href="/products/${id}">
+            <div class="img" style="background-image: url(${image[0]});">
+            </div>
 
-          <div class="content">
-              <h3>${name}</h3>
-              <h4>${price}</h4>
-              <button>Add to cart</button>
-          </div>
+            <div class="content">
+                <h3>${name}</h3>
+                <h4>${price} VND</h4>
+            </div>
+          </a>
 					`;
 
       template.querySelector(".products").appendChild(div);

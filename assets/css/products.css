@@ -1,37 +1,116 @@
 .products_page {
     padding-top: 8em;
 }
+
 .products_page li {
     list-style: none;
 }
 
 .products_page .grid {
     display: grid;
-    grid-template: auto / 20% 1fr ;
+    grid-template: auto / 20% 1fr;
     grid-gap: 24px;
 }
+
 .products_page .side_bar {
-    border: 1px solid tomato;
+    border: 3px solid var(--primary);
+    display: flex;
+    height: fit-content;
+    background-color: #F6F6F6;
+    padding: 24px 16px;
+    border-radius: 8px;
 }
+
 .products_page .products {
     display: grid;
-    grid-template: auto / repeat(3,1fr);
+    grid-template: auto / repeat(3, 1fr);
     grid-gap: 16px;
 }
+
+.products_page a {
+    width: 100%;
+}
+
 .products_page .item {
-    border: 2px solid pink;
+    border: 3px solid var(--primary);
     background-color: #F6F6F6;
     border-radius: 8px;
 }
+
+.products_page .item:hover {
+    border: 3px solid var(--secondary);
+}
+
+.products_page .item:hover h3 {
+    color: var(--secondary);
+}
+
+.products_page .item h4 {
+    color: gray;
+}
+
 .products_page .products .img {
-    padding: 16px;
-    width: 100%;
+    width: 60%;
+    margin: auto;
     height: auto;
     aspect-ratio: 1/1;
     background: aqua no-repeat center;
     background-size: cover;
     border-radius: 8px;
 }
+
 .products_page .content {
     text-align: center;
+    line-height: 1.6;
+    padding-bottom: 12px;
+}
+
+.products_page .filter {
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1.6;
+}
+
+.products_page .filter:hover {
+    color: var(--secondary);
+}
+
+.products_page h3 {
+    color: var(--primary);
+}
+
+@media (max-width:1023px) {
+    .products_page .grid {
+        display: block;
+    }
+
+    .products_page .side_bar {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        bottom: 5%;
+    }
+
+    .products_page ul {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .products_page .products {
+        display: grid;
+        grid-template: auto / repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+
+    .products_page .item {
+        border: 1px solid var(--primary);
+    }
+
+    .products_page .item:hover {
+        border: 1px solid var(--secondary);
+    }
 }

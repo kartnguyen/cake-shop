@@ -16,12 +16,12 @@ export async function render() {
                         hết - niềm hạnh phúc khi thưởng thức bánh cùng những người mà bạn yêu thương.</p>
                 </div>
                 <div class="action">
-                    <button>
-                        <a href="/products" style="color: #fff">Đặt hàng</a>
-                    </button>
-                    <button>
-                        <a href="/about" style="color: #fff">Tìm Hiểu Thêm Về KarT's House</a>
-                    </button>
+                    <a href="/products" style="color: #fff">
+                        <button>Đặt hàng</button>
+                    </a>
+                    <a href="/about" style="color: #fff">
+                        <button>Tìm Hiểu Thêm Về KarT's House</button>
+                    </a>
                 </div>
             </div>
             <div class="owl-carousel owl-theme">
