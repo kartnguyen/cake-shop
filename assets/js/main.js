@@ -53,8 +53,7 @@ $(".owl-carousel").owlCarousel({
   nav: false,
   dots: false,
   animateOut: "fadeOut",
+  mouseDrag: false,
   loop: true,
-  autoplay: true,
-  autoplayTimeout: 5000,
-  autoplayTimeout: 2000,
+  autoplay: true
 });

@@ -28,8 +28,6 @@ module.exports = {
         <link rel="stylesheet" href="./assets/libs/owlcarousel/assets/owl.theme.default.min.css">
         <!-- main css -->
         <link rel="stylesheet" href="./assets/css/style.css">
-        <!-- home css -->
-        <link rel="stylesheet" href="./assets/css/home.css">
     </head>
     
     <body>

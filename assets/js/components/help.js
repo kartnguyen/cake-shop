@@ -1,17 +1,17 @@
 export const api_url = "https://64a662ab096b3f0fcc7fa7e0.mockapi.io/";
 export const endPoint = {
-	diving: 'cake'
+	cake: 'cake'
 }
 
-export async function fetchData(params) {
+export async function fetch_data(params) {
 	if (!params) {
-		alert('Không tồn tại request');
+		alert('không tồn tại request');
 		return false;
 	}
-	let {apiUrl, endPoint, method, callback} = params;
+	let {api_url, end_point, method, callback} = params;
 	
 	try {
-		let res = await fetch(apiUrl + endPoint, {
+		let res = await fetch(api_url + end_point, {
 			method: method
 		});
 

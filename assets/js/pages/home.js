@@ -1,5 +1,6 @@
 export async function render() {
   let template = document.createElement("div");
+  template.classList.add('home_page')
   template.innerHTML = `
         <section>
         <div class="container title" style="min-height: 550px;" data-aos="fade-down" data-aos-easing="linear"
@@ -15,8 +16,12 @@ export async function render() {
                         hết - niềm hạnh phúc khi thưởng thức bánh cùng những người mà bạn yêu thương.</p>
                 </div>
                 <div class="action">
-                    <button>Đặt hàng</button>
-                    <button>Tìm Hiểu Thêm Về KarT's House</button>
+                    <button>
+                        <a href="/products" style="color: #fff">Đặt hàng</a>
+                    </button>
+                    <button>
+                        <a href="/about" style="color: #fff">Tìm Hiểu Thêm Về KarT's House</a>
+                    </button>
                 </div>
             </div>
             <div class="owl-carousel owl-theme">
@@ -64,6 +69,13 @@ export async function render() {
         </div>
         </section>
     `;
+
+  let homeCss = document.createElement("link");
+  homeCss.href = "./assets/css/home.css";
+  homeCss.rel = "stylesheet";
+  homeCss.type = "text/css";
+  document.head.appendChild(homeCss);
+
   let jqueryScript = document.createElement("script");
   jqueryScript.src = "./assets/js/components/jquery-3.7.0.min.js";
   jqueryScript.async = true;
@@ -84,7 +96,7 @@ export async function render() {
   let aosScript = document.createElement("script");
   aosScript.src = "./assets/libs/aos-master/aos.js";
   aosScript.async = true;
-  document.head.appendChild(aosScript);
+  document.body.appendChild(aosScript);
 
   aosScript.onload = function () {
     AOS.init();

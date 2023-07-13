@@ -29,7 +29,7 @@ export async function render() {
   let aosScript = document.createElement("script");
   aosScript.src = "./assets/libs/aos-master/aos.js";
   aosScript.async = true;
-  document.head.appendChild(aosScript);
+  document.body.appendChild(aosScript);
 
   aosScript.onload = function () {
     AOS.init();
