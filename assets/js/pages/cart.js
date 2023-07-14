@@ -1,9 +1,11 @@
 export async function render() {
   let template = document.createElement("div");
   template.innerHTML = `
-      <section>
-          <h2 style="color: #A66D56;">CART PAGE</h2>
-      </section>
+  <section>
+  <div class="container">
+    <h2 style="color: #A66D56;">CART PAGE</h2>
+  </div>
+</section>
         `;
   document.querySelector(".nav-bar a.active").classList.remove("active");
 

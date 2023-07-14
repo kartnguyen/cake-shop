@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "//": "npx pm2 start app.js --watch",
     "start": "node app.js",
-    "stop": ""
+    "stop": "npx stop app.js"
   },
   "author": "kartnguyen",
   "license": "ISC",

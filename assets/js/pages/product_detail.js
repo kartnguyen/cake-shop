@@ -2,43 +2,21 @@ import { api_url, endPoint, fetch_data } from "../components/help.js";
 import { loading } from "../components/load.js";
 
 export async function render() {
-  let get_products = {
-    api_url: api_url,
-    end_point: endPoint.cake,
-    method: "GET",
-    async callback(params) {
-      await loading.item();
-      await render_products(params);
-    },
-  };
-
   let template = document.createElement("section");
   template.classList.add('products_page')
   template.innerHTML = `
   	<div class="container">
-        <div class="grid">
-          <div class="side_bar">
-              <ul>
-                  <li class="filter active">All</li>
-                  <li class="filter">Mood Cake</li>
-                  <li class="filter">Lover Cake</li>
-              </ul>
-          </div>
-          <div class="products">
-          </div>    
-      </div>
     </div>
 	`;
 
   async function render_products(params) {
-    template.querySelector(".products").innerHTML = "";
+    template.querySelector(".container").innerHTML = "";
     for (let cake of params) {
       let { id, image, name, content, sub_title, price, quantity } = cake;
 
       let div = document.createElement("div");
       div.classList.add("item");
       div.innerHTML = `
-          <a href="/product_detail/${id}">
             <div class="img" style="background-image: url(${image[0]});">
             </div>
 
@@ -46,10 +24,9 @@ export async function render() {
                 <h3>${name}</h3>
                 <h4>${price} VND</h4>
             </div>
-          </a>
 					`;
 
-      template.querySelector(".products").appendChild(div);
+      template.querySelector(".container").appendChild(div);
     }
   }
 

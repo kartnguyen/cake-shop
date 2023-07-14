@@ -31,6 +31,11 @@ module.exports = {
     </head>
     
     <body>
+        <div class="loader">
+            <div class="cake-gif">
+                <div class="icon"></div>
+            </div>
+        </div>
         <header>
             <div class="container">
                 <div class="row">
