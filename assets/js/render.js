@@ -1,4 +1,4 @@
-import { removeLoader, fetch_data } from "./components/help.js";
+import { api_url, endPoint, removeLoader, fetch_data } from "./components/help.js";
 
 let app = document.querySelector("main");
 

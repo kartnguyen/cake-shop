@@ -20,14 +20,14 @@ module.exports = {
         <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
         <!-- aos -->
-        <link rel="stylesheet" href="./assets/libs/aos-master/aos.css">
+        <link rel="stylesheet" href="/assets/libs/aos-master/aos.css">
         <!-- animate -->
-        <link rel="stylesheet" href="./assets/libs/animate/animate.css">
+        <link rel="stylesheet" href="/assets/libs/animate/animate.css">
         <!-- owlcarousel -->
-        <link rel="stylesheet" href="./assets/libs/owlcarousel/assets/owl.carousel.min.css">
-        <link rel="stylesheet" href="./assets/libs/owlcarousel/assets/owl.theme.default.min.css">
+        <link rel="stylesheet" href="/assets/libs/owlcarousel/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="/assets/libs/owlcarousel/assets/owl.theme.default.min.css">
         <!-- main css -->
-        <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
     </head>
     
     <body>
@@ -40,7 +40,7 @@ module.exports = {
             <div class="container">
                 <div class="row">
                     <a href="/" title="KarT's House">
-                        <img src="./assets/images/logo.svg" alt="">
+                        <img src="/assets/images/logo.svg" alt="">
                     </a>
                     <div class="navbar-toggle">
                         <div class="login">
@@ -85,7 +85,7 @@ module.exports = {
             <div class="container footer">
                 <div class="row">
                     <div class="img">
-                        <img src="./assets/images/logo.svg" alt="">
+                        <img src="/assets/images/logo.svg" alt="">
                     </div>
                     <div class="col">
                         <div class="name">
@@ -147,7 +147,7 @@ module.exports = {
         <a class="back-to-top" href="#" title="Lên đầu trang">
             <i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
         </a>
-        <script type="module" src="./assets/js/render.js"></script>
+        <script type="module" src="/assets/js/render.js"></script>
     </body>
     
     </html>

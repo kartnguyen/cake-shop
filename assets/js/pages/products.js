@@ -74,15 +74,6 @@ export async function render() {
   };
   document.body.appendChild(jqueryScript);
 
-  let aosScript = document.createElement("script");
-  aosScript.src = "./assets/libs/aos-master/aos.js";
-  aosScript.async = true;
-  document.body.appendChild(aosScript);
-
-  aosScript.onload = function () {
-    AOS.init();
-  };
-
   await fetch_data(get_products);
 
   return template;
