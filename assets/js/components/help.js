@@ -28,3 +28,21 @@ export async function removeLoader() {
 		loader.remove()
 	});
 }
+
+export const chef = [
+	{
+		name: 'Tuấn Hưng',
+		avatar: './assets/images/chef/chef_1.jpg',
+		job: '"Nghệ sĩ điêu khắc" bánh ngọt'
+	},
+	{
+		name: 'Mỹ Tâm',
+		avatar: './assets/images/chef/chef_2.jpg',
+		job: 'Nữ đầu bếp được yêu mến'
+	},
+	{
+		name: 'Đen Vâu',
+		avatar: './assets/images/chef/chef_3.jpg',
+		job: 'Chuyên gia về bánh ngọt'
+	}
+]

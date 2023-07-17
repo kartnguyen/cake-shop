@@ -280,9 +280,11 @@ section:first-child {
         display: block;
         margin: 0;
     }
+
     header .nav-logo img {
         margin: 0 auto !important;
     }
+
     header .login {
         padding-right: 1%;
     }
@@ -383,10 +385,321 @@ section:first-child {
     z-index: 11;
     background-image: url(../images/pattern-a.png);
 }
+
 .icon {
     background: no-repeat center;
     background-image: url(../images/loading.gif);
     width: 300px;
     height: 300px;
     background-size: cover;
+}
+
+/* products */
+
+.products_page {
+    padding-top: 8em;
+}
+
+.products_page li {
+    list-style: none;
+}
+
+.products_page .grid {
+    display: grid;
+    grid-template: auto / 20% 1fr;
+    grid-gap: 24px;
+}
+
+.products_page .side_bar {
+    border: 3px solid var(--primary);
+    display: flex;
+    height: fit-content;
+    background-color: #F6F6F6;
+    padding: 24px 16px;
+    border-radius: 8px;
+}
+
+.products_page .products {
+    display: grid;
+    grid-template: auto / repeat(3, 1fr);
+    grid-gap: 16px;
+}
+
+.products_page a {
+    width: 100%;
+}
+
+.products_page .item {
+    border: 3px solid var(--primary);
+    background-color: #F6F6F6;
+    border-radius: 8px;
+}
+
+.products_page .item:hover {
+    border: 3px solid var(--secondary);
+}
+
+.products_page .item:hover h3 {
+    color: var(--secondary);
+}
+
+.products_page .item h4 {
+    color: gray;
+}
+
+.products_page .products .img {
+    width: 60%;
+    margin: auto;
+    height: auto;
+    aspect-ratio: 1/1;
+    background: aqua no-repeat center;
+    background-size: cover;
+    border-radius: 8px;
+}
+
+.products_page .content {
+    text-align: center;
+    line-height: 1.6;
+    padding-bottom: 12px;
+}
+
+.products_page .filter {
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1.6;
+}
+
+.products_page .filter:hover {
+    color: var(--secondary);
+}
+
+.products_page h3 {
+    color: var(--primary);
+}
+
+@media (max-width:1023px) {
+    .products_page .grid {
+        display: block;
+    }
+
+    .products_page .side_bar {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        bottom: 5%;
+    }
+
+    .products_page ul {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .products_page .products {
+        display: grid;
+        grid-template: auto / repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+
+    .products_page .item {
+        border: 1px solid var(--primary);
+    }
+
+    .products_page .item:hover {
+        border: 1px solid var(--secondary);
+    }
+}
+
+/* home */
+
+.home_page .title {
+    display: grid;
+    grid-template: auto / 40% 1fr;
+    grid-gap: 48px;
+    justify-items: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+
+.home_page .title.left {
+    grid-template: auto / 1fr 40%;
+    justify-items: flex-end;
+}
+
+.home_page .title .content button {
+    margin-top: 16px;
+    padding: 14px 26px;
+    background-color: var(--primary);
+    color: #fff;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.home_page .title .content button:first-child {
+    margin-right: 16px;
+}
+
+.home_page .title .content button:hover {
+    background-color: var(--secondary);
+    color: #fff;
+}
+
+.home_page .title .text {
+    font-family: system-ui, -apple-system, 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 24px 0;
+}
+
+.home_page .title .content {
+    padding-bottom: 24px;
+}
+
+.home_page .title .text h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 42px;
+    color: var(--primary);
+    padding-bottom: 24px;
+}
+
+.home_page .title .text p {
+    font-size: 16px;
+    color: grey;
+    line-height: 1.6;
+}
+
+.home_page .title .img,
+.home_page .title .item {
+    background: aqua no-repeat center;
+    background-size: cover;
+    height: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 24px;
+}
+
+.home_page .title .owl-carousel .owl-stage-outer .owl-item {
+    height: 550px;
+}
+
+@media (max-width:1023px) {
+    .home_page .title {
+        display: block;
+    }
+
+    .home_page .title.left {
+        margin-top: 3em;
+    }
+
+    .home_page .title .img {
+        margin-bottom: 1em;
+    }
+
+    .home_page .title .owl-carousel .owl-stage-outer .owl-item {
+        height: auto;
+        width: 100%;
+    }
+}
+
+/* about */
+
+.about_page .chef_infor {
+    padding: 24px;
+    display: grid;
+    grid-template: auto / 30% 1fr;
+    align-items: center;
+    grid-gap: 36px;
+    background: no-repeat left;
+    background-image: url(../images/chef/chef_bg.jpg);
+    background-size: cover;
+    border-radius: 12px;
+}
+
+.about_page .profile {
+    display: grid;
+    grid-template: auto /repeat(3, 1fr);
+    grid-gap: 24px;
+}
+
+.about_page .about {
+    text-align: center;
+}
+
+.about_page .about h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 46px;
+    color: var(--primary);
+    padding-bottom: 24px;
+}
+
+.about_page .chef_infor p {
+    font-size: 16px;
+    color: grey;
+    line-height: 1.6;
+}
+
+.about_page img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+}
+
+.about_page .chef {
+    text-align: center;
+}
+
+.about_page .chef h3 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary);
+    font-size: 34px;
+    margin: 16px;
+}
+
+.about_page ul li {
+    list-style-type: none;
+    background: var(--primary);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about_page ul li a {
+    color: #fff;
+}
+
+.about_page .social-list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 16px;
+}
+.about_page .content {
+    padding: 24px;
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 4em;
+}
+.about_page .content h3 {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 50px;
+    color: var(--primary);
+    padding-bottom: 28px;
+}
+.about_page .content p {
+    font-size: 20px;
+    color: grey;
+    line-height: 1.6;
+}
+.about_page .content-item {
+    display: grid;
+    grid-template: auto / 1fr 1fr;
+    border: 1px solid gray;
+}
+.about_page .item img {
+    max-width: 350px; 
+    border-radius: 8px;
 }

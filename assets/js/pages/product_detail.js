@@ -30,12 +30,6 @@ export async function render() {
     }
   }
 
-  let productsCss = document.createElement("link");
-  productsCss.href = "./assets/css/products.css";
-  productsCss.rel = "stylesheet";
-  productsCss.type = "text/css";
-  document.head.appendChild(productsCss);
-
   document.querySelector(".nav-bar a.active").classList.remove("active");
   document.querySelector(".nav-bar .products").classList.add("active");
 

@@ -70,12 +70,6 @@ export async function render() {
         </section>
     `;
 
-  let homeCss = document.createElement("link");
-  homeCss.href = "./assets/css/home.css";
-  homeCss.rel = "stylesheet";
-  homeCss.type = "text/css";
-  document.head.appendChild(homeCss);
-
   let jqueryScript = document.createElement("script");
   jqueryScript.src = "./assets/js/components/jquery-3.7.0.min.js";
   jqueryScript.async = true;
