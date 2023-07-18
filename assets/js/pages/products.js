@@ -13,21 +13,23 @@ export async function render() {
   };
 
   let template = document.createElement("section");
-  template.classList.add('products_page')
+  template.classList.add("products_page");
   template.innerHTML = `
-  	<div class="container">
-        <div class="grid">
-          <div class="side_bar">
-              <ul>
-                  <li class="filter active">All</li>
-                  <li class="filter">Mood Cake</li>
-                  <li class="filter">Lover Cake</li>
-              </ul>
-          </div>
-          <div class="products">
-          </div>    
+  <div class="container">
+    <div class="grid">
+      <div class="side_container">
+        <div class="side_bar">
+          <ul>
+              <li class="filter active">All</li>
+              <li class="filter">Mood Cake</li>
+              <li class="filter">Lover Cake</li>
+          </ul>
+        </div>
       </div>
+      <div class="products">
+      </div>    
     </div>
+  </div>
 	`;
 
   async function render_products(params) {
@@ -81,25 +83,17 @@ export async function render() {
 }
 
 export async function side_bar() {
-    var div1 = document.querySelector("header");
-    var div2 = document.querySelector(".side_bar");
-    var isSticky = false;
-  
-    function stickToTop() {
-      var rect1 = div1.getBoundingClientRect();
-      var rect2 = div2.getBoundingClientRect();
-  
-      if (rect1.bottom >= rect2.top && rect1.top <= rect2.bottom && !isSticky) {
-        var translateY = rect1.bottom - rect2.top;
-        console.log(translateY)
-        div2.style.transform = "translateY(" + translateY + "px)";
-        isSticky = true;
-      } else if ((rect1.bottom < rect2.top || rect1.top > rect2.bottom) && isSticky) {
-        div2.style.transform = "none";
-        isSticky = false;
-      }
+  window.addEventListener("scroll", function () {
+    var side_bar = document.querySelector(".side_bar");
+
+    var elementWidth = side_bar.offsetWidth;
+    var scrollPosition = window.scrollY;
+
+    if (scrollPosition > 0) {
+      side_bar.classList.add("sticky");
+      document.querySelector(".side_bar").style.width = elementWidth + 'px';
+    } else {
+      side_bar.classList.remove("sticky");
     }
-  
-    window.addEventListener("scroll", stickToTop);
-  
+  });
 }

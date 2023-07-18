@@ -407,22 +407,38 @@ section:first-child {
 .products_page .grid {
     display: grid;
     grid-template: auto / 20% 1fr;
-    grid-gap: 24px;
+    grid-gap: 32px;
+}
+
+.products_page .side_container {
+    margin: 0px;
+    display: flex;
+    position: relative;
+    box-sizing: content-box;
+    min-height: 200px;
+    height: auto;
 }
 
 .products_page .side_bar {
-    background-color: #F6F6F6;
+    width: 100%;
+    position: relative;
     display: flex;
-    height: fit-content;
+    height: 200px;
     padding: 24px 16px;
-    border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    background-color: #F6F6F6;
+    border-radius: 12px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.products_page .side_bar.sticky {
+    position: fixed;
+    top: 129px;
 }
 
 .products_page .products {
     display: grid;
     grid-template: auto / repeat(3, 1fr);
-    grid-gap: 16px;
+    grid-gap: 26px;
 }
 
 .products_page a {
@@ -431,8 +447,8 @@ section:first-child {
 
 .products_page .item {
     background-color: #F6F6F6;
-    border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    border-radius: 12px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 
@@ -457,14 +473,14 @@ section:first-child {
 .products_page .content {
     text-align: center;
     line-height: 1.6;
-    padding-bottom: 12px;
+    padding-bottom: 30px;
 }
 
 .products_page .filter {
     text-transform: uppercase;
     font-size: 14px;
     cursor: pointer;
-    line-height: 1.6;
+    line-height: 2.5;
 }
 
 .products_page .filter:hover {
@@ -478,13 +494,6 @@ section:first-child {
 @media (max-width:1023px) {
     .products_page .grid {
         display: block;
-    }
-
-    .products_page .side_bar {
-        position: fixed;
-        left: 0;
-        width: 100%;
-        bottom: 5%;
     }
 
     .products_page ul {
@@ -518,30 +527,49 @@ section:first-child {
     justify-items: flex-end;
 }
 
-.home_page .about {
-    margin-top: 16px;
-    padding: 14px 26px;
-    border-radius: 4px;
-    border: 1px solid var(--primary);
-    background-color: transparent;
-    color: #111;
-    text-transform: uppercase;
-}
-
 .home_page .cart {
-    margin-right: 16px;
-    margin-top: 16px;
-    padding: 14px 26px;
-    border-radius: 4px;
-    border: 1px solid var(--primary);
+    width: 100%;
+    align-items: center;
     background-color: var(--primary);
+    border-radius: .45rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
     color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 16px;
+    justify-content: center;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    transition: all 250ms;
+    touch-action: manipulation;
+    vertical-align: baseline;
     text-transform: uppercase;
+    padding-right: 38px;
 }
 
-.home_page .title .content button:hover {
+.home_page .cart:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    transform: translateY(-1px);
     background-color: var(--secondary);
     color: #fff;
+}
+
+.home_page .cart:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+}
+
+.home_page .cart::after {
+    content: "\1F370";
+    font-size: 15px;
+    position: absolute;
+    right: 14px;
+    top: 9px;
 }
 
 .home_page .title .text {
@@ -606,10 +634,12 @@ section:first-child {
     grid-template: auto / 30% 1fr;
     align-items: center;
     grid-gap: 36px;
-    background: no-repeat left;
-    background-image: url(../images/chef/chef_bg.jpg);
-    background-size: cover;
     border-radius: 12px;
+}
+
+.about_page .head {
+    min-height: 100vh;
+    position: relative;
 }
 
 .about_page .profile {
@@ -635,10 +665,11 @@ section:first-child {
     line-height: 1.6;
 }
 
-.about_page img {
-    width: 100%;
+.about_page .chef img {
+    width: 70%;
     height: auto;
     aspect-ratio: 1/1;
+    border: 1px solid var(--primary);
     border-radius: 8px;
 }
 
@@ -676,21 +707,23 @@ section:first-child {
 }
 
 .about_page .content {
-    padding: 24px;
-    border-bottom: 1px solid var(--primary);
     padding-bottom: 4em;
 }
 
 .about_page .content h3 {
     text-align: center;
     font-family: 'Dancing Script', cursive;
-    font-size: 50px;
+    font-size: 46px;
     color: var(--primary);
-    padding-bottom: 28px;
+    padding: 30px 0;
+}
+
+.about_page .content h3:first-child {
+    padding: 0;
 }
 
 .about_page .content p {
-    font-size: 20px;
+    font-size: 16px;
     color: grey;
     line-height: 1.6;
 }
@@ -698,10 +731,58 @@ section:first-child {
 .about_page .content-item {
     display: grid;
     grid-template: auto / 1fr 1fr;
-    border: 1px solid gray;
+    align-items: center;
 }
 
-.about_page .item img {
-    max-width: 350px;
+.about_page .content-item .img {
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 280px;
     border-radius: 8px;
+    background: no-repeat center;
+    background-size: cover;
+    border: 1px solid var(--primary);
+}
+
+.about_page .content-item p {
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+}
+
+.about_page .head_img {
+    width: 100%;
+    display: grid;
+    grid-template: auto / repeat(3, 1fr);
+    gap: 46px;
+}
+
+.about_page .head_img .img {
+    aspect-ratio: 1/1;
+    width: 80%;
+    margin: auto;
+    background: no-repeat center;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.about_page .head_img h4 {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    color: grey;
+    margin: 40px auto 24px auto;
+}
+
+.about_page .head_img p {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.about_page .down {
+    display: block;
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
 }

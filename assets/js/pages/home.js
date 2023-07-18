@@ -16,11 +16,8 @@ export async function render() {
                         hết - niềm hạnh phúc khi thưởng thức bánh cùng những người mà bạn yêu thương.</p>
                 </div>
                 <div class="action">
-                    <a href="/products" style="color: #fff">
-                        <button class="cart">Đặt hàng</button>
-                    </a>
-                    <a href="/about" style="color: #fff">
-                        <button class="about">Tìm Hiểu Thêm Về KarT's House</button>
+                    <a href="/products" style="width: 40%;">
+                        <button class="cart">đặt hàng ngay</button>
                     </a>
                 </div>
             </div>
