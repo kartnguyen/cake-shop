@@ -57,7 +57,7 @@ module.exports = {
                     </div>
                     <nav>
                         <div class="nav-logo">
-                            <img src="./assets/images/logo.svg" alt="">
+                            <img src="/assets/images/logo.svg" alt="">
                         </div>
                         <div class="nav-bar">
                             <a href="/" class="home active">Trang chủ</a>
@@ -73,7 +73,7 @@ module.exports = {
                             </a>
                             <button>Login</button>
                         </div>
-                        <div class="nav-img" style="background-image: url(./assets/images/nav-bar.webp);"></div>
+                        <div class="nav-img" style="background-image: url(/assets/images/nav-bar.webp);"></div>
                     </nav>
                 </div>
             </div>    

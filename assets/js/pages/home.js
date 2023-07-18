@@ -17,10 +17,10 @@ export async function render() {
                 </div>
                 <div class="action">
                     <a href="/products" style="color: #fff">
-                        <button>Đặt hàng</button>
+                        <button class="cart">Đặt hàng</button>
                     </a>
                     <a href="/about" style="color: #fff">
-                        <button>Tìm Hiểu Thêm Về KarT's House</button>
+                        <button class="about">Tìm Hiểu Thêm Về KarT's House</button>
                     </a>
                 </div>
             </div>
@@ -71,15 +71,15 @@ export async function render() {
     `;
 
   let jqueryScript = document.createElement("script");
-  jqueryScript.src = "./assets/js/components/jquery-3.7.0.min.js";
+  jqueryScript.src = "/assets/js/components/jquery-3.7.0.min.js";
   jqueryScript.async = true;
   jqueryScript.onload = function () {
     let owlCarouselScript = document.createElement("script");
-    owlCarouselScript.src = "./assets/libs/owlcarousel/owl.carousel.min.js";
+    owlCarouselScript.src = "/assets/libs/owlcarousel/owl.carousel.min.js";
     owlCarouselScript.async = true;
     owlCarouselScript.onload = function () {
       let mainScript = document.createElement("script");
-      mainScript.src = "./assets/js/main.js";
+      mainScript.src = "/assets/js/main.js";
       mainScript.async = true;
       document.body.appendChild(mainScript);
     };
@@ -88,7 +88,7 @@ export async function render() {
   document.body.appendChild(jqueryScript);
 
   let aosScript = document.createElement("script");
-  aosScript.src = "./assets/libs/aos-master/aos.js";
+  aosScript.src = "/assets/libs/aos-master/aos.js";
   aosScript.async = true;
   document.body.appendChild(aosScript);
 

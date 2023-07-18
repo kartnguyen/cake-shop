@@ -57,3 +57,7 @@ $(".owl-carousel").owlCarousel({
   loop: true,
   autoplay: true
 });
+
+function formart_price(params) {
+  return params.toLocaleString("vi-VN")+' ₫';
+}

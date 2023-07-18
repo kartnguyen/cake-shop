@@ -41,32 +41,33 @@ export async function render() {
           <a href="/product_detail/${id}">
             <div class="img" style="background-image: url(${image[0]});">
             </div>
+          </a>
 
             <div class="content">
+              <a href="/product_detail/${id}">
                 <h3>${name}</h3>
-                <h4>${price} VND</h4>
+              </a>
+              <h4>${formart_price(price)}</h4>
             </div>
-          </a>
 					`;
 
       template.querySelector(".products").appendChild(div);
     }
   }
 
-
   document.querySelector(".nav-bar a.active").classList.remove("active");
   document.querySelector(".nav-bar .products").classList.add("active");
 
   let jqueryScript = document.createElement("script");
-  jqueryScript.src = "./assets/js/components/jquery-3.7.0.min.js";
+  jqueryScript.src = "/assets/js/components/jquery-3.7.0.min.js";
   jqueryScript.async = true;
   jqueryScript.onload = function () {
     let owlCarouselScript = document.createElement("script");
-    owlCarouselScript.src = "./assets/libs/owlcarousel/owl.carousel.min.js";
+    owlCarouselScript.src = "/assets/libs/owlcarousel/owl.carousel.min.js";
     owlCarouselScript.async = true;
     owlCarouselScript.onload = function () {
       let mainScript = document.createElement("script");
-      mainScript.src = "./assets/js/main.js";
+      mainScript.src = "/assets/js/main.js";
       mainScript.async = true;
       document.body.appendChild(mainScript);
     };
@@ -77,4 +78,28 @@ export async function render() {
   await fetch_data(get_products);
 
   return template;
+}
+
+export async function side_bar() {
+    var div1 = document.querySelector("header");
+    var div2 = document.querySelector(".side_bar");
+    var isSticky = false;
+  
+    function stickToTop() {
+      var rect1 = div1.getBoundingClientRect();
+      var rect2 = div2.getBoundingClientRect();
+  
+      if (rect1.bottom >= rect2.top && rect1.top <= rect2.bottom && !isSticky) {
+        var translateY = rect1.bottom - rect2.top;
+        console.log(translateY)
+        div2.style.transform = "translateY(" + translateY + "px)";
+        isSticky = true;
+      } else if ((rect1.bottom < rect2.top || rect1.top > rect2.bottom) && isSticky) {
+        div2.style.transform = "none";
+        isSticky = false;
+      }
+    }
+  
+    window.addEventListener("scroll", stickToTop);
+  
 }
