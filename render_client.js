@@ -26,6 +26,9 @@ module.exports = {
         <!-- owlcarousel -->
         <link rel="stylesheet" href="/assets/libs/owlcarousel/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="/assets/libs/owlcarousel/assets/owl.theme.default.min.css">
+        <!-- slick -->
+        <link rel="stylesheet" href="/assets/libs/slick/slick.css">
+        <link rel="stylesheet" href="/assets/libs/slick/slick-theme.css">
         <!-- main css -->
         <link rel="stylesheet" href="/assets/css/style.css">
     </head>

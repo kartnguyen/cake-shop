@@ -786,3 +786,18 @@ section:first-child {
     left: 50%;
     transform: translateX(-50%);
 }
+
+/* product details */
+
+
+.products_details_page .container {
+    display: grid;
+    grid-template: auto / 40% 1fr;
+    gap: 24px;
+}
+.products_details_page .cake-img {
+    background: no-repeat center;
+    background-size: cover;
+    aspect-ratio: 1/1;
+    width: 100%;
+}

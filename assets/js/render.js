@@ -46,6 +46,8 @@ async function init_app() {
         let page = await import("./pages/product_detail.js");
         let render = await page.render(params);
         app.appendChild(await render);
+        await page.render_cake(params.image);
+        await page.slick_cake();
       }
     };
     await fetch_data(get_products_by_id)
