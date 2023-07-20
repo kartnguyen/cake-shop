@@ -54,6 +54,7 @@ async function init_app() {
         app.appendChild(await render);
         await main();
         await page.render_cake_img();
+        await page.callback(params);
       }
     };
     await fetch_data(get_products_by_id)
