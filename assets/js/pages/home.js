@@ -1,6 +1,6 @@
 export async function render() {
   let template = document.createElement("div");
-  template.classList.add('home_page')
+  template.classList.add("home_page");
   template.innerHTML = `
         <section>
         <div class="container title" style="min-height: 550px;" data-aos="fade-down" data-aos-easing="linear"
@@ -16,7 +16,7 @@ export async function render() {
                         hết - niềm hạnh phúc khi thưởng thức bánh cùng những người mà bạn yêu thương.</p>
                 </div>
                 <div class="action">
-                    <a href="/products" style="width: 40%;">
+                    <a href="/products">
                         <button class="cart">đặt hàng ngay</button>
                     </a>
                 </div>
@@ -67,31 +67,19 @@ export async function render() {
         </section>
     `;
 
-  let jqueryScript = document.createElement("script");
-  jqueryScript.src = "/assets/js/components/jquery-3.7.0.min.js";
-  jqueryScript.async = true;
-  jqueryScript.onload = function () {
-    let owlCarouselScript = document.createElement("script");
-    owlCarouselScript.src = "/assets/libs/owlcarousel/owl.carousel.min.js";
-    owlCarouselScript.async = true;
-    owlCarouselScript.onload = function () {
-      let mainScript = document.createElement("script");
-      mainScript.src = "/assets/js/main.js";
-      mainScript.async = true;
-      document.body.appendChild(mainScript);
-    };
-    document.body.appendChild(owlCarouselScript);
-  };
-  document.body.appendChild(jqueryScript);
-
-  let aosScript = document.createElement("script");
-  aosScript.src = "/assets/libs/aos-master/aos.js";
-  aosScript.async = true;
-  document.body.appendChild(aosScript);
-
-  aosScript.onload = function () {
-    AOS.init();
-  };
-
   return template;
+}
+
+export async function callback() {
+  $(".owl-carousel").owlCarousel({
+    items: 1,
+    nav: false,
+    dots: false,
+    animateOut: "fadeOut",
+    mouseDrag: false,
+    loop: true,
+    autoplay: true,
+  });
+
+  AOS.init();
 }

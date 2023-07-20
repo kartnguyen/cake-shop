@@ -9,7 +9,7 @@ module.exports = {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>KarT's House - The Best Bakery Shop</title>
         <!-- favicon -->
-        <link rel="shortcut icon" href="./assets/images/icon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="/assets/images/icon.png" type="image/x-icon">
         <!-- fontawesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
             integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -23,12 +23,9 @@ module.exports = {
         <link rel="stylesheet" href="/assets/libs/aos-master/aos.css">
         <!-- animate -->
         <link rel="stylesheet" href="/assets/libs/animate/animate.css">
-        <!-- owlcarousel -->
+        <!-- slick -->
         <link rel="stylesheet" href="/assets/libs/owlcarousel/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="/assets/libs/owlcarousel/assets/owl.theme.default.min.css">
-        <!-- slick -->
-        <link rel="stylesheet" href="/assets/libs/slick/slick.css">
-        <link rel="stylesheet" href="/assets/libs/slick/slick-theme.css">
         <!-- main css -->
         <link rel="stylesheet" href="/assets/css/style.css">
     </head>
@@ -52,7 +49,6 @@ module.exports = {
                                     <i class="fa-solid fa-cart-shopping bounceIn"></i>
                                 </button>
                             </a>
-                            <button>Login</button>
                         </div>
                         <button class="navbar-dropdown">
                             <i class="fa-solid fa-bars"></i>
@@ -74,7 +70,6 @@ module.exports = {
                                     <i class="fa-solid fa-cart-shopping"></i>
                                 </button>
                             </a>
-                            <button>Login</button>
                         </div>
                         <div class="nav-img" style="background-image: url(/assets/images/nav-bar.webp);"></div>
                     </nav>
@@ -148,9 +143,13 @@ module.exports = {
         </footer>
 
         <a class="back-to-top" href="#" title="Lên đầu trang">
-            <i class="fa-solid fa-chevron-up" style="color: #ffffff;"></i>
+            <i class="fa-solid fa-chevron-up" style="color: #fff;"></i>
         </a>
-        <script type="module" src="/assets/js/render.js"></script>
+        <script src="/assets/libs/jquery-3.7.0.min.js"></script>
+        <script src="/assets/libs/aos-master/aos.js"></script>
+        <script src="/assets/libs/owlcarousel/owl.carousel.min.js"></script>
+
+        <script type="module" src="/assets/js/main.js"></script>
     </body>
     
     </html>

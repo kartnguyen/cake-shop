@@ -1,80 +1,62 @@
-window.addEventListener("resize", function (e) {
-  if (window.innerWidth > 1023) {
-    document.querySelector("nav").className = '';
-    if(document.querySelector(".overlay")){
-      document.querySelector(".overlay").remove();
-    }
+import { api_url, endPoint, removeLoader, fetch_data, main } from "./components/help.js";
+
+let app = document.querySelector("main");
+
+async function init_app() {
+  if (location.pathname == "/") {
+    await setTimeout(removeLoader, 2000);
+    let page = await import("./pages/home.js");
+    let render = await page.render();
+    app.appendChild(await render);
+    await main();
+    await page.callback();
   }
-});
-
-window.addEventListener("scroll", function (e) {
-  if (window.pageYOffset > 20) {
-    document.querySelector("header").classList.add("fixed-top");
-    document
-      .querySelector(".back-to-top")
-      .classList.add("show", "animated", "infinite", "pulse");
-  } else {
-    document.querySelector("header").classList.remove("fixed-top");
-    document
-      .querySelector(".back-to-top")
-      .classList.remove("show", "animated", "infinite", "pulse");
+  if (location.pathname.includes("products")) {
+    await setTimeout(removeLoader, 2000);
+    let page = await import("./pages/products.js");
+    let render = await page.render();
+    app.appendChild(await render);
+    await main();
+    await page.side_bar();
   }
-});
-
-let template = document.body;
-
-function handle_mobile_nav() {
-  let btn = template.querySelector(".navbar-dropdown"),
-    nav = template.querySelector("header nav"),
-    overlay = document.createElement("div");
-  overlay.classList.add("overlay");
-
-  if (btn) {
-    btn.addEventListener("click", (e) => {
-      template.classList.add("overflow-hidden");
-      template.querySelector("header .row").appendChild(overlay);
-      nav.className = "show animated bounceInLeft";
-    });
-
-    overlay.addEventListener("click", (e) => {
-      template.classList.remove("overflow-hidden");
-      overlay.remove();
-      nav.className = "show animated bounceOutLeft";
-      setTimeout(() => {
-        nav.className = "";
-      }, 300);
-    });
+  if (location.pathname.includes("about")) {
+    await setTimeout(removeLoader, 2000);
+    let page = await import("./pages/about.js");
+    let render = await page.render();
+    app.appendChild(await render);
+    await main();
+  }
+  if (location.pathname.includes("contact")) {
+    await setTimeout(removeLoader, 2000);
+    let page = await import("./pages/contact.js");
+    let render = await page.render();
+    app.appendChild(await render);
+    await main();
+  }
+  if (location.pathname.includes("cart")) {
+    await setTimeout(removeLoader, 2000);
+    let page = await import("./pages/cart.js");
+    let render = await page.render();
+    app.appendChild(await render);
+    await main();
+  }
+  if (location.pathname.includes("product_detail")) {
+    let pathname = location.pathname;
+    pathname = pathname.split('/')[2];
+    let get_products_by_id = {
+      api_url: api_url,
+      end_point: endPoint.cake + '/' + pathname,
+      method: "GET",
+      async callback(params) {
+        await setTimeout(removeLoader, 2000);
+        let page = await import("./pages/product_detail.js");
+        let render = await page.render(params);
+        app.appendChild(await render);
+        await main();
+        await page.render_cake_img();
+      }
+    };
+    await fetch_data(get_products_by_id)
   }
 }
-handle_mobile_nav();
-
-$(".owl-carousel").owlCarousel({
-  items: 1,
-  nav: false,
-  dots: false,
-  animateOut: "fadeOut",
-  mouseDrag: false,
-  loop: true,
-  autoplay: true
-});
-
-$(".slider-for").slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  fade: true,
-  asNavFor: ".slider-nav",
-});
-$(".slider-nav").slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  asNavFor: ".slider-for",
-  dots: true,
-  centerMode: true,
-  focusOnSelect: true,
-});
-
-
-function formart_price(params) {
-  return params.toLocaleString("vi-VN")+' ₫';
-}
+init_app();
