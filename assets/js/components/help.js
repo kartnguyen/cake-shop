@@ -87,6 +87,24 @@ export async function main() {
     }
   }
   handle_mobile_nav();
+
+  const cart = JSON.parse(localStorage.getItem("cake")) || {};
+  let value = Object.keys(cart).length;
+  let cart_value = document.querySelectorAll(".login .cart_value");
+  if (value === 0) {
+    cart_value.forEach(function (item) {
+      if (item.classList.contains("show")) {
+        item.classList.remove("show");
+      }
+    });
+  } else {
+    cart_value.forEach(function (item) {
+        item.classList.add("show");
+        item.textContent = value;
+        document.querySelector(".navbar-dropdown").style.padding = '9px 16px';
+        console.log(document.querySelector(".navbar-dropdown"))
+    });
+  }
 }
 
 export async function format_price(params) {

@@ -46,7 +46,8 @@ module.exports = {
                         <div class="login">
                             <a href="/cart">
                                 <button title="Giỏ hàng">
-                                    <i class="fa-solid fa-cart-shopping bounceIn"></i>
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <span class="cart_value"> </span>
                                 </button>
                             </a>
                         </div>
@@ -68,6 +69,7 @@ module.exports = {
                             <a href="/cart">
                                 <button title="Giỏ hàng" class="cart">
                                     <i class="fa-solid fa-cart-shopping"></i>
+                                    <span class="cart_value"> </span>
                                 </button>
                             </a>
                         </div>

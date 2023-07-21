@@ -3,6 +3,7 @@ import {
   endPoint,
   fetch_data,
   format_price,
+  main
 } from "../components/help.js";
 import { loading } from "../components/load.js";
 
@@ -111,6 +112,6 @@ export async function render() {
   cart_button.forEach((item) => {
     item.classList.add("active");
   });
-
+  await main();
   return template;
 }
