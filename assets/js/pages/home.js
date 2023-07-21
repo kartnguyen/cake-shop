@@ -8,10 +8,10 @@ export async function render() {
             <div class="content">
                 <div class="text">
                     <h2 style="font-size: 54px;">Niềm hạnh phúc khi cùng nhau thưởng thức bánh</h2>
-                    <p>Sự ra đời của KarT's House bắt nguồn từ niềm đam mê bất tận về bánh ngọt của một người đầu
+                    <p>Sự ra đời của <b><i>KarT's House</i></b> bắt nguồn từ niềm đam mê bất tận về bánh ngọt của một người đầu
                         bếp và tư
                         duy sáng tạo của một nhà thiết kế. Được định hình là thương hiệu bánh ngọt chuẩn Pháp,
-                        KarT's House
+                        <b><i>KarT's House</i></b>
                         trao tới bạn những chiếc bánh Entremet tinh tế, cùng nhiều loại bánh ngọt cao cấp và trên
                         hết - niềm hạnh phúc khi thưởng thức bánh cùng những người mà bạn yêu thương.</p>
                 </div>
@@ -46,7 +46,7 @@ export async function render() {
             <div class="content">
                 <div class="text">
                     <h2>Chất lượng</h2>
-                    <p>Để mang lại trải nghiệm đáng nhớ trong từng chiếc bánh, sản phẩm của KarT's House được làm từ
+                    <p>Để mang lại trải nghiệm đáng nhớ trong từng chiếc bánh, sản phẩm của <b><i>KarT's House</i></b> được làm từ
                         những nguyên liệu được chọn lựa cẩn thận và hoàn thiện tỉ mỉ với những tiêu chuẩn cao cấp
                         nhất.</p>
                 </div>
@@ -60,7 +60,7 @@ export async function render() {
             <div class="img" style="background-image: url(./assets/images/cake/cake-10.jpg);"></div>
             <div class="text">
                 <h2 style="color: #A66D56;">Cho mọi người</h2>
-                <p>Bánh của KarT's House được nghiên cứu để phù hợp với khẩu vị của người Việt và luôn được đóng gói
+                <p>Bánh của <b><i>KarT's House</i></b> được nghiên cứu để phù hợp với khẩu vị của người Việt và luôn được đóng gói
                     chỉnh chu để ai cũng có thể nhận về những niềm vui khi bánh được giao tới tận nơi.</p>
             </div>
         </div>

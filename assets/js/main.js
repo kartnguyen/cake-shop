@@ -25,6 +25,7 @@ async function init_app() {
     let render = await page.render();
     app.appendChild(await render);
     await main();
+    await page.callback();
   }
   if (location.pathname.includes("contact")) {
     await setTimeout(removeLoader, 2000);

@@ -46,7 +46,6 @@ export async function render(params) {
   let minus = template.querySelector(".products_details_page .minus");
   let plus = template.querySelector(".products_details_page .plus");
   let qty = template.querySelector(".products_details_page .input-qty");
-  let cart = template.querySelector(".products_details_page .btn-add");
 
   async function handleQuantity(type) {
     let currentQuantity = parseInt(qty.innerHTML);
@@ -90,13 +89,14 @@ export async function render_cake_img() {
 
 export async function callback(params) {
   document.querySelector(".btn-add").addEventListener("click", function (e) {
-    let { id, image, name, content, sub_title, price, quantity } = params;
+    let { id, image, name, price } = params;
     let qty = parseInt(document.querySelector(".products_details_page .input-qty").innerHTML);
     let new_item = {
       id: id,
       name: name,
+      image: image[0],
       price: price,
-      total_price: price,
+      total_price: price*qty,
       quantity: qty,
     };
     const cart = JSON.parse(localStorage.getItem("cake")) || {};

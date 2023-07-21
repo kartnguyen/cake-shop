@@ -38,6 +38,11 @@ a {
     color: #111;
 }
 
+b {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
 button {
     outline: none;
     border: none;
@@ -142,6 +147,11 @@ nav {
     background-color: transparent;
     border-radius: 4px;
     text-transform: uppercase;
+}
+
+.login button.active {
+    background-color: var(--primary);
+    color: #fff;
 }
 
 .login button:hover,
@@ -531,8 +541,8 @@ section:first-child {
     height: 200px;
     padding: 24px 16px;
     background-color: #F6F6F6;
-    border-radius: 12px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 8px;
+    box-shadow: rgba(255, 183, 77, 0.4) 5px 5px, rgba(255, 183, 77, 0.3) 10px 10px, rgba(255, 183, 77, 0.2) 15px 15px, rgba(255, 183, 77, 0.1) 20px 20px, rgba(255, 183, 77, 0.05) 25px 25px;
 }
 
 .products_page .side_bar.sticky {
@@ -543,7 +553,7 @@ section:first-child {
 .products_page .products {
     display: grid;
     grid-template: auto / repeat(3, 1fr);
-    grid-gap: 26px;
+    grid-gap: 24px;
 }
 
 .products_page a {
@@ -552,7 +562,7 @@ section:first-child {
 
 .products_page .item {
     background-color: #F6F6F6;
-    border-radius: 12px;
+    border-radius: 8px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -590,6 +600,7 @@ section:first-child {
 
 .products_page .filter:hover {
     color: var(--secondary);
+    font-size: 1.3rem;
 }
 
 .products_page h3 {
@@ -785,37 +796,48 @@ section:first-child {
     grid-template: auto / 40% 1fr;
     gap: 24px;
 }
+
 .products_details_page .content {
-    padding-top: 56px;
-    padding-left: 36px;
+    padding: 36px 16px 0 16px;
 }
+
 .products_details_page .slider {
-    background-color: #F4F4F4;
+    margin: 24px;
+    padding-bottom: 16px;
+    background-color: #F8F8F8;
+    box-shadow: rgba(255, 183, 77, 0.4) 5px 5px, rgba(255, 183, 77, 0.3) 10px 10px, rgba(255, 183, 77, 0.2) 15px 15px, rgba(255, 183, 77, 0.1) 20px 20px, rgba(255, 183, 77, 0.05) 25px 25px;
 }
+
 .products_details_page .images {
     display: flex;
     justify-content: center;
 }
+
 .products_details_page .images .cake-img {
     width: 100px;
     border: 1px solid black;
     margin: 5px;
     cursor: pointer;
 }
+
 .products_details_page .images .cake-img.active {
     border: 1px solid var(--primary);
 }
+
 .products_details_page .cake-img {
     background: no-repeat center;
     background-size: cover;
     aspect-ratio: 1/1;
-    width: 100%;
+    width: 80%;
+    margin: auto;
 }
-.products_details_page .quantity{
+
+.products_details_page .quantity {
     display: flex;
-    padding-bottom: 32px;
+    padding-bottom: 26px;
     align-items: center;
 }
+
 .products_details_page .is-form {
     border: 1px solid black;
     width: 50px;
@@ -823,21 +845,25 @@ section:first-child {
     background-color: transparent;
     border-radius: 4px;
 }
+
 .products_details_page .is-form:hover {
     background-color: var(--secondary);
     color: #fff;
     border: 1px solid var(--primary);
 }
+
 .products_details_page .buttons_added {
     display: flex;
     width: 180px;
     align-items: center;
     justify-content: space-between;
 }
+
 .products_details_page .input-qty {
     margin: 0 24px;
     font-size: 24px;
 }
+
 .products_details_page .btn-add {
     align-items: center;
     background-color: var(--primary);
@@ -857,6 +883,7 @@ section:first-child {
     text-transform: uppercase;
     margin-left: 50px;
 }
+
 .products_details_page .btn-add:hover {
     border-color: rgba(0, 0, 0, 0.15);
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
@@ -872,24 +899,174 @@ section:first-child {
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
 }
+
 .products_details_page .name {
     font-family: 'Dancing Script', cursive;
-    font-size: 70px;
-    padding-bottom: 16px;
+    font-size: 64px;
+    padding-bottom: 14px;
     color: var(--primary);
 }
+
 .products_details_page .sub_title {
     font-size: 20px;
-    padding-bottom: 32px;
+    padding-bottom: 26px;
     font-weight: 500;
     color: #514A44;
 }
+
 .products_details_page .price {
-    font-size: 34px;
-    padding-bottom: 32px;
+    font-size: 30px;
+    padding-bottom: 26px;
     font-weight: 600;
     color: var(--secondary);
 }
-.products_details_page .content p{
-    line-height: 2;
+
+.products_details_page .content p {
+    line-height: 1.6;
+}
+
+/* ---------------------------------cart------------------------------------- */
+
+.cart_page .none_obj {
+    height: 40vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart_page .none_obj h2 {
+    text-transform: uppercase;
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    padding-bottom: 14px;
+    color: var(--primary);
+}
+
+.cart_page .none_obj button {
+    text-decoration: underline;
+    font-size: 20px;
+    color: gray;
+}
+
+.cart_page .none_obj button:hover {
+    color: var(--secondary);
+}
+
+.cart_page .cart_obj {
+    display: grid;
+    grid-template: auto / 60% 1fr;
+    gap: 32px;
+}
+
+.cart_page .cart_obj .information {
+    background-color: aqua;
+}
+
+.cart_page .cart_obj .order_item {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0 16px 16px;
+}
+
+.cart_page .cart_obj .cake {
+    overflow-y: auto;
+    height: 300px;
+    padding-right: 24px;
+}
+
+.cart_page .cart_obj .cake_item {
+    display: grid;
+    grid-template: auto / 20% 40% 1fr;
+    gap: 16px;
+    padding-bottom: 16px;
+}
+
+.cart_page .cart_obj .cake_item .img {
+    background: no-repeat center;
+    background-size: cover;
+    aspect-ratio: 1/1;
+    width: 100%;
+}
+
+.cart_page .cart_obj .cake_item h4 {
+    margin: 12px 0;
+}
+
+.cart_page .cart_obj .buttons_added {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart_page .cart_obj .is-form {
+    border: 1px solid gray;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+.cart_page .cart_obj .is-form:hover {
+    background-color: var(--secondary);
+    color: #fff;
+    border: 1px solid var(--primary);
+}
+
+.cart_page .cart_obj .confirm {
+    padding: 16px 0;
+    display: block;
+    font-size: 20px;
+    font-family: 'Dancing Script', cursive;
+    width: 100%;
+    background-color: var(--primary);
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.cart_page .cart_obj .item {
+    margin: 12px 0;
+    font-size: 18px;
+}
+
+.cart_page .checkbox-wrapper-25 input[type="checkbox"] {
+    background-image: -webkit-linear-gradient(hsla(0, 0%, 0%, .1), hsla(0, 0%, 100%, .1)),
+        -webkit-linear-gradient(left, rgb(244, 61, 61) 50%, rgb(64, 106, 243) 50%);
+    background-size: 100% 100%, 200% 100%;
+    background-position: 0 0, 15px 0;
+    border-radius: 25px;
+    box-shadow: inset 0 1px 4px hsla(0, 0%, 0%, .5),
+        inset 0 0 10px hsla(0, 0%, 0%, .5),
+        0 0 0 1px hsla(0, 0%, 0%, .1),
+        0 -1px 2px 2px hsla(0, 0%, 0%, .25),
+        0 2px 2px 2px hsla(0, 0%, 100%, .75);
+    cursor: pointer;
+    height: 25px;
+    padding-right: 25px;
+    width: 75px;
+    appearance: none;
+    transition: .25s;
+}
+
+.cart_page .checkbox-wrapper-25 input[type="checkbox"]:after {
+    background-color: #eee;
+    background-image: -webkit-linear-gradient(hsla(0, 0%, 100%, .1), hsla(0, 0%, 0%, .1));
+    border-radius: 25px;
+    box-shadow: inset 0 1px 1px 1px hsla(0, 0%, 100%, 1),
+        inset 0 -1px 1px 1px hsla(0, 0%, 0%, .25),
+        0 1px 3px 1px hsla(0, 0%, 0%, .5),
+        0 0 2px hsla(0, 0%, 0%, .25);
+    content: '';
+    display: block;
+    height: 25px;
+    width: 50px;
+}
+
+.cart_page .checkbox-wrapper-25 input[type="checkbox"]:checked {
+    background-position: 0 0, 35px 0;
+    padding-left: 25px;
+    padding-right: 0;
 }
