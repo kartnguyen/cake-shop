@@ -100,7 +100,7 @@ export async function callback(params) {
       quantity: qty,
     };
     const cart = JSON.parse(localStorage.getItem("cake")) || {};
-    let key = new_item.name;
+    let key = new_item.id;
     if (cart[key]) {
       cart[key]["quantity"] += qty;
       cart[key]["total_price"] = cart[key]["quantity"] * cart[key]["price"];

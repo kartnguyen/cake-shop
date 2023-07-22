@@ -102,7 +102,6 @@ export async function main() {
         item.classList.add("show");
         item.textContent = value;
         document.querySelector(".navbar-dropdown").style.padding = '9px 16px';
-        console.log(document.querySelector(".navbar-dropdown"))
     });
   }
 }
