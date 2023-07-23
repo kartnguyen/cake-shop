@@ -1,4 +1,9 @@
-import { api_url, endPoint, fetch_data, format_price } from "../components/help.js";
+import {
+  api_url,
+  endPoint,
+  fetch_data,
+  format_price,
+} from "../components/help.js";
 import { loading } from "../components/load.js";
 
 export async function render() {
@@ -20,9 +25,9 @@ export async function render() {
       <div class="side_container">
         <div class="side_bar">
           <ul>
-              <li class="filter active">All</li>
-              <li class="filter">Mood Cake</li>
-              <li class="filter">Lover Cake</li>
+              <li class="filter active all">All</li>
+              <li class="filter mood_cake">Mood Cake</li>
+              <li class="filter lover_cake">Lover Cake</li>
           </ul>
         </div>
       </div>
@@ -35,9 +40,11 @@ export async function render() {
   async function render_products(params) {
     template.querySelector(".products").innerHTML = "";
     for (let cake of params) {
-      let { id, image, name, content, sub_title, price, quantity } = cake;
+      let { id, image, name, content, sub_title, price, quantity, category } =
+        cake;
       let div = document.createElement("div");
       div.classList.add("item");
+      div.setAttribute("cate", category);
       let formattedPrice = await format_price(price);
       div.innerHTML = `
           <a href="/product_detail/${id}">
@@ -54,13 +61,73 @@ export async function render() {
 					`;
 
       template.querySelector(".products").appendChild(div);
+
+      const divElements = template.querySelectorAll("div[cate]");
+
+      function filterDivByAttribute(category) {
+        const filteredDivs = Array.from(divElements).filter((div) => {
+          const cateAttributeValue = div.getAttribute("cate");
+          return cateAttributeValue.includes(category);
+        });
+        return filteredDivs;
+      }
+
+      template
+        .querySelector(".all")
+        .addEventListener("click", function (event) {
+          template.querySelector(".products").appendChild(div);
+        });
+
+      template
+        .querySelector(".mood_cake")
+        .addEventListener("click", function (event) {
+          const filteredDivs = filterDivByAttribute("mc");
+          template.querySelector(".products").innerHTML = "";
+
+          filteredDivs.forEach((div) => {
+            template.querySelector(".products").appendChild(div);
+          });
+        });
+
+      template
+        .querySelector(".lover_cake")
+        .addEventListener("click", function (event) {
+          const filteredDivs = filterDivByAttribute("lc");
+          template.querySelector(".products").innerHTML = "";
+
+          filteredDivs.forEach((div) => {
+            template.querySelector(".products").appendChild(div);
+          });
+        });
     }
   }
+
+  template.querySelectorAll(".filter").forEach(function (item) {
+    item.addEventListener("click", function (event) {
+      template.querySelectorAll(".filter").forEach(function (filterItem) {
+        filterItem.classList.remove("active");
+      });
+
+      item.classList.add("active");
+    });
+  });
 
   document.querySelector(".nav-bar a.active").classList.remove("active");
   document.querySelector(".nav-bar .products").classList.add("active");
 
-  await fetch_data(get_products);
+  const getAllProducts = await fetch_data(get_products);
+
+  // function filterProductsByCate(products, cateToFilter) {
+  //   const filteredProducts = products.filter( function(product) {
+  //     return product.category === cateToFilter;
+  //   })
+  //   return filteredProducts;
+  // }
+
+  // template.querySelector(".mood_cake").addEventListener("click", function (event) {
+  //   const filteredProducts = filterProductsByCate(getAllProducts, "mc");
+  //   render_products(filteredProducts);
+  // });
 
   return template;
 }
@@ -74,7 +141,7 @@ export async function side_bar() {
 
     if (scrollPosition > 0) {
       side_bar.classList.add("sticky");
-      document.querySelector(".side_bar").style.width = elementWidth + 'px';
+      document.querySelector(".side_bar").style.width = elementWidth + "px";
     } else {
       side_bar.classList.remove("sticky");
     }

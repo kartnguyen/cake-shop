@@ -90,23 +90,45 @@ export async function render_cake_img() {
 export async function callback(params) {
   document.querySelector(".btn-add").addEventListener("click", function (e) {
     let { id, image, name, price } = params;
-    let qty = parseInt(document.querySelector(".products_details_page .input-qty").innerHTML);
+    let qty = parseInt(
+      document.querySelector(".products_details_page .input-qty").innerHTML
+    );
     let new_item = {
       id: id,
       name: name,
       image: image[0],
       price: price,
-      total_price: price*qty,
+      total_price: price * qty,
       quantity: qty,
     };
     const cart = JSON.parse(localStorage.getItem("cake")) || {};
     let key = new_item.id;
     if (cart[key]) {
-      cart[key]["quantity"] += qty;
+      cart[key]["quantity"] = qty;
       cart[key]["total_price"] = cart[key]["quantity"] * cart[key]["price"];
     } else {
       cart[key] = new_item;
     }
     localStorage.setItem("cake", JSON.stringify(cart));
+    renderIcon(cart);
+
+    function renderIcon(params) {
+      let value = Object.keys(params).length;
+      let cart_value = document.querySelectorAll(".login .cart_value");
+      if (value === 0) {
+        cart_value.forEach(function (item) {
+          if (item.classList.contains("show")) {
+            item.classList.remove("show");
+            item.textContent = "";
+          }
+        });
+      } else {
+        cart_value.forEach(function (item) {
+          item.classList.add("show");
+          item.textContent = value;
+          document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
+        });
+      }
+    }
   });
 }
