@@ -277,6 +277,15 @@ export async function render() {
 
   function renderIcon(params) {
     let value = Object.keys(params).length;
+
+    let totalQuantity = 0;
+
+    for (const k in params) {
+      if (params.hasOwnProperty(k)) {
+        totalQuantity += params[k].quantity;
+      }
+    }
+    let cake_value = totalQuantity;
     let cart_value = document.querySelectorAll(".login .cart_value");
     if (value === 0) {
       cart_value.forEach(function (item) {
@@ -289,7 +298,7 @@ export async function render() {
       template.querySelector(".order_item .qty").textContent = value;
       cart_value.forEach(function (item) {
         item.classList.add("show");
-        item.textContent = value;
+        item.textContent = cake_value;
         document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
       });
     }
@@ -437,18 +446,7 @@ export async function callback() {
 
   let confirm = document.querySelector(".order .confirm");
   confirm.addEventListener("click", function () {
-    // const orderItem = document.querySelector(".order");
-    // const orderItemHeight = parseFloat(
-    //   window.getComputedStyle(orderItem).height
-    // );
-
-    // console.log(orderItem);
-    // console.log(orderItemHeight);
-    // if (orderItemHeight > 410) {
-    //   document.querySelector(".order .cake").style.height = "fit-content";
-    // } else {
-    //   document.querySelector(".order .cake").style.height = "239px";
-    // }
+    document.querySelector(".order .cake").style.height = "fit-content";
     catch_error(name);
     catch_error(phone);
     catch_error(email);
@@ -476,8 +474,8 @@ export async function callback() {
       let order = {
         "Họ tên": name.value,
         "Số điện thoại": phone.value,
-        'Email': email.value,
-        'Quận': district.value,
+        Email: email.value,
+        Quận: district.value,
         "Địa chỉ nhà": address.value,
         "Phương án giao hàng": method,
         "Ngày yêu cầu": formattedDate,

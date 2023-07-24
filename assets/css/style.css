@@ -1003,6 +1003,7 @@ section:first-child {
 .cart_page .cart_obj .cake {
     padding-right: 34px;
     overflow: auto;
+    height: 238px;
 }
 
 .cart_page .cart_obj .cake_item {

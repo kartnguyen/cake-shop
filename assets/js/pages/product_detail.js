@@ -104,7 +104,7 @@ export async function callback(params) {
     const cart = JSON.parse(localStorage.getItem("cake")) || {};
     let key = new_item.id;
     if (cart[key]) {
-      cart[key]["quantity"] = qty;
+      cart[key]["quantity"] += qty;
       cart[key]["total_price"] = cart[key]["quantity"] * cart[key]["price"];
     } else {
       cart[key] = new_item;
@@ -114,6 +114,14 @@ export async function callback(params) {
 
     function renderIcon(params) {
       let value = Object.keys(params).length;
+      let totalQuantity = 0;
+
+      for (const k in params) {
+        if (params.hasOwnProperty(k)) {
+          totalQuantity += params[k].quantity;
+        }
+      }
+      let cake_value = totalQuantity;
       let cart_value = document.querySelectorAll(".login .cart_value");
       if (value === 0) {
         cart_value.forEach(function (item) {
@@ -125,7 +133,7 @@ export async function callback(params) {
       } else {
         cart_value.forEach(function (item) {
           item.classList.add("show");
-          item.textContent = value;
+          item.textContent = cake_value;
           document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
         });
       }
