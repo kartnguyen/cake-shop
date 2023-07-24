@@ -22,35 +22,35 @@ export async function render() {
                     <p>Họ và tên</p>
                     <span class="required" title="required">*</span>
                   </label>
-                  <input type="text" id="name" class="input name">
+                  <input type="text" id="name" class="input name" tag="Họ và tên">
                 </div>
                 <div class="item">
                   <label for="phone">
                     <p>Số điện thoại</p>
                     <span class="required" title="required">*</span>
                   </label>
-                  <input type="text" id="phone" class="input phone">
+                  <input type="text" id="phone" class="input phone" tag="Số điện thoại">
                 </div>
                 <div class="item">
                   <label for="email">
                     <p>Email</p>
                     <span class="required" title="required">*</span>
                   </label>
-                  <input type="text" id="email" class="input email">
+                  <input type="text" id="email" class="input email" tag="Email">
                 </div>
                 <div class="item">
                   <label for="district">
                     <p>Quận</p>
                     <span class="required" title="required">*</span>
                   </label>
-                  <input type="text" id="district" class="input district">
+                  <input type="text" id="district" class="input district" tag="Quận">
                 </div>
                 <div class="item">
                   <label for="address">
                     <p>Địa chỉ</p>
                     <span class="required" title="required">*</span>
                   </label>
-                  <input type="text" id="address" class="input address">
+                  <input type="text" id="address" class="input address" tag="Địa chỉ">
                 </div>
               </div>
             </div>
@@ -67,7 +67,7 @@ export async function render() {
                 <label for="dates">
                   <p>Ngày giao hàng</p>
                 </label>
-                <input type="text" id="dates" class="input dates">
+                <input type="date" id="dates" class="input dates">
               </div>
               <div class="item">
                 <label for="note">
@@ -97,7 +97,7 @@ export async function render() {
             <h3>Giỏ hàng</h3>
             <div class="order_item">
               <div class="cake"></div>
-              <div>
+              <div style="margin-top:auto">
                 <div class="item">
                   <h4>Phí ship : </h4> <span class="ship" style="font-weight:bold"></span>
                 </div>
@@ -286,7 +286,7 @@ export async function render() {
         }
       });
     } else {
-      template.querySelector('.order_item .qty').textContent = value;
+      template.querySelector(".order_item .qty").textContent = value;
       cart_value.forEach(function (item) {
         item.classList.add("show");
         item.textContent = value;
@@ -307,7 +307,14 @@ export async function render() {
         template
           .querySelector(".schedule .list")
           .classList.add("show", "animated", "fadeInLeftBig");
-        template.querySelector(".order_item .cake").style.height = "469px";
+
+        const dateInput = document.querySelector(".schedule .dates");
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+        const day = String(currentDate.getDate()).padStart(2, "0");
+        const defaultDate = `${year}-${month}-${day}`;
+        dateInput.value = defaultDate;
       } else {
         data = "ON";
         checkbox.checked = true;
@@ -321,7 +328,6 @@ export async function render() {
           template
             .querySelector(".schedule .list")
             .classList.remove("show", "fadeOutLeftBig", "animated");
-          template.querySelector(".order_item .cake").style.height = "239px";
         }, 400);
       }
     });
@@ -350,43 +356,149 @@ export async function callback() {
     label.addEventListener("click", (e) => {
       const input = e.target.parentNode;
       let radio = input.querySelector("input[type='radio']");
-      method =radio.value;
+      method = radio.value;
     });
   });
 
-  cake.forEach(function(item) {
+  cake.forEach(function (item) {
     cake_name = item.textContent;
-  })
+  });
 
-  quantity.forEach(function(item) {
+  quantity.forEach(function (item) {
     cake_quantity = item.textContent;
-  })
+  });
+
+  let errors = {};
 
   function catch_error(params) {
-    let error = document.createElement('p');
     if (!params.value) {
-      params.classList.add('error');
-      error.innerHTML = `${params} không được để trống!`;
-      params.parentNode.appendChild(error);
-    } else {
-      if (error.parentNode) {
-        error.remove();
+      if (!errors[params.id]) {
+        params.classList.add("error");
+        errors[params.id] = document.createElement("p");
+        errors[params.id].style.marginTop = "14px";
+        errors[params.id].style.color = "red";
+        params.parentNode.appendChild(errors[params.id]);
+        errors[params.id].innerHTML = `${params.getAttribute(
+          "tag"
+        )} không được để trống!`;
       }
+    } else {
+      if (params.id === "phone") {
+        let regex = /^[0-9]{10}$/;
+        if (!regex.test(params.value)) {
+          params.classList.add("error");
+          if (!errors[params.id]) {
+            errors[params.id] = document.createElement("p");
+            errors[params.id].style.marginTop = "14px";
+            errors[params.id].style.color = "red";
+            params.parentNode.appendChild(errors[params.id]);
+          }
+          errors[params.id].innerHTML = `${params.getAttribute(
+            "tag"
+          )} không hợp lệ!`;
+        } else {
+          params.classList.remove("error");
+          if (errors[params.id]) {
+            errors[params.id].remove();
+            delete errors[params.id];
+          }
+        }
+      } else if (params.id === "email") {
+        let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(params.value)) {
+          params.classList.add("error");
+          if (!errors[params.id]) {
+            errors[params.id] = document.createElement("p");
+            errors[params.id].style.marginTop = "14px";
+            errors[params.id].style.color = "red";
+            params.parentNode.appendChild(errors[params.id]);
+          }
+          errors[params.id].innerHTML = `${params.getAttribute(
+            "tag"
+          )} không hợp lệ!`;
+        } else {
+          params.classList.remove("error");
+          if (errors[params.id]) {
+            errors[params.id].remove();
+            delete errors[params.id];
+          }
+        }
+      } else {
+        params.classList.remove("error");
+        if (errors[params.id]) {
+          errors[params.id].remove();
+          delete errors[params.id];
+        }
+      }
+      return true;
     }
+    return false;
   }
+
   let confirm = document.querySelector(".order .confirm");
   confirm.addEventListener("click", function () {
+    // const orderItem = document.querySelector(".order");
+    // const orderItemHeight = parseFloat(
+    //   window.getComputedStyle(orderItem).height
+    // );
+
+    // console.log(orderItem);
+    // console.log(orderItemHeight);
+    // if (orderItemHeight > 410) {
+    //   document.querySelector(".order .cake").style.height = "fit-content";
+    // } else {
+    //   document.querySelector(".order .cake").style.height = "239px";
+    // }
     catch_error(name);
-    console.log(name);
-    console.log(phone);
-    console.log(email);
-    console.log(district);
-    console.log(address);
-    console.log(dates);
-    console.log(note);
-    console.log(method);
-    console.log(cake_name);
-    console.log(cake_quantity);
-    console.log(ttbill);
+    catch_error(phone);
+    catch_error(email);
+    catch_error(district);
+    catch_error(address);
+    if (!method) {
+      let method_error = document.createElement("p");
+      method_error.classList.add("method_error");
+      method_error.style.color = "red";
+      method_error.innerHTML = `Bạn chưa chọn phương thức thanh toán`;
+      document.querySelector(".method .list").appendChild(method_error);
+    } else {
+      if (document.querySelector(".method .list .method_error")) {
+        document.querySelector(".method .list .method_error").remove();
+      }
+    }
+    let checkbox = document.querySelector("#cb");
+    let formattedDate;
+    if (checkbox.checked) {
+      const selectedDate = dates.value;
+      const dateArray = selectedDate.split("-");
+      formattedDate = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
+    }
+    function set_orrder() {
+      let order = {
+        "Họ tên": name.value,
+        "Số điện thoại": phone.value,
+        'Email': email.value,
+        'Quận': district.value,
+        "Địa chỉ nhà": address.value,
+        "Phương án giao hàng": method,
+        "Ngày yêu cầu": formattedDate,
+        "Ghi chú": note.value,
+        "Loại bánh": cake_name,
+        "Số lượng": cake_quantity,
+        "Tổng tiền": ttbill,
+      };
+      localStorage.setItem("order", JSON.stringify(order));
+    }
+    // set_orrder();
+    if (
+      catch_error(name) &
+      catch_error(phone) &
+      catch_error(email) &
+      catch_error(district) &
+      catch_error(address) &
+      method
+    ) {
+      console.log(a);
+      set_orrder();
+    }
   });
 }

@@ -976,6 +976,7 @@ section:first-child {
     display: grid;
     grid-template: auto / 60% 1fr;
     gap: 32px;
+    align-items: stretch;
 }
 
 .cart_page .cart_obj .order_item {
@@ -985,19 +986,23 @@ section:first-child {
     gap: 16px;
     padding: 16px 0 16px 16px;
     border: 1px solid grey;
+    height: 100%;
 }
-
+.cart_page .cart_obj .order {
+    display: flex;
+    flex-direction: column;
+}
 .cart_page .cart_obj .check_out {
     padding: 16px;
     background-color: #F4F6F8;
     border: 1px solid grey;
     border-top: 0;
+    margin-top: auto;
 }
 
 .cart_page .cart_obj .cake {
-    overflow-y: auto;
-    height: 239px;
     padding-right: 34px;
+    overflow: auto;
 }
 
 .cart_page .cart_obj .cake_item {
