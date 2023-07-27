@@ -99,7 +99,11 @@ export async function render() {
               <div class="cake"></div>
               <div style="margin-top:auto">
                 <div class="item">
-                  <h4>Phí ship : </h4> <span class="ship" style="font-weight:bold"></span>
+                  <div>
+                  <h4>Phí ship : </h4> 
+                  <p style="font-size: 14px; font-style: italic">(Free ship khi mua từ 2 sản phẩm)</p>
+                  </div>
+                  <span class="ship" style="font-weight:bold"></span>
                 </div>
                 <div class="item">
                   <h4>Tổng giá <span class="qty"></span> sản phẩm : </h4> <span class="ttbill" style="font-weight:bold"></span>
@@ -149,10 +153,11 @@ export async function render() {
       let allTotalPrice = calculateTotalPrice(cart);
 
       let shippingFee;
-      if (allTotalPrice <= 1000000) {
-        shippingFee = 75000;
+      console.log(Object.keys(cart).length)
+      if (Object.keys(cart).length == 1) {
+        shippingFee = 35000;
       } else {
-        shippingFee = 135000;
+        shippingFee = 0;
       }
 
       allTotalPrice += shippingFee;
@@ -187,9 +192,9 @@ export async function render() {
       });
     }
     checkCart(cart);
+    renderIcon(cart);
   }
   renderCart(cart);
-  renderIcon(cart);
 
   function handleQuantity(params) {
     let { type, key } = params;
@@ -352,12 +357,21 @@ export async function callback() {
     address = document.querySelector(".delivery .address"),
     dates = document.querySelector(".schedule .dates"),
     note = document.querySelector(".schedule .note"),
-    method,
-    cake = document.querySelectorAll(".order_item .cake_name"),
-    quantity = document.querySelectorAll(".order_item .input-qty"),
-    cake_name,
-    cake_quantity,
-    ttbill = document.querySelector(".order_item .ttbill").textContent;
+    method = false,
+    cake = {};
+
+  const cart = JSON.parse(localStorage.getItem("cake")) || {};
+  let products_number = 0;
+
+  for (let [k, v] of Object.entries(cart)) {
+    products_number+=1;
+    let { name, quantity } = v;
+
+    cake['Cake ' + products_number] = {
+      name: name,
+      quantity: quantity
+    };
+  }
 
   const labels = document.querySelectorAll(".check-box");
 
@@ -367,14 +381,6 @@ export async function callback() {
       let radio = input.querySelector("input[type='radio']");
       method = radio.value;
     });
-  });
-
-  cake.forEach(function (item) {
-    cake_name = item.textContent;
-  });
-
-  quantity.forEach(function (item) {
-    cake_quantity = item.textContent;
   });
 
   let errors = {};
@@ -452,12 +458,15 @@ export async function callback() {
     catch_error(email);
     catch_error(district);
     catch_error(address);
-    if (!method) {
-      let method_error = document.createElement("p");
-      method_error.classList.add("method_error");
-      method_error.style.color = "red";
-      method_error.innerHTML = `Bạn chưa chọn phương thức thanh toán`;
-      document.querySelector(".method .list").appendChild(method_error);
+
+    if (method == false) {
+      if (!document.querySelector(".method .list .method_error")) {
+        let method_error = document.createElement("p");
+        method_error.classList.add("method_error");
+        method_error.style.color = "red";
+        method_error.innerHTML = `Bạn chưa chọn phương thức thanh toán`;
+        document.querySelector(".method .list").appendChild(method_error);
+      }
     } else {
       if (document.querySelector(".method .list .method_error")) {
         document.querySelector(".method .list .method_error").remove();
@@ -470,33 +479,31 @@ export async function callback() {
       const dateArray = selectedDate.split("-");
       formattedDate = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
     }
-    function set_orrder() {
+    function set_order() {
       let order = {
         "Họ tên": name.value,
         "Số điện thoại": phone.value,
-        Email: email.value,
-        Quận: district.value,
+        'Email': email.value,
+        'Quận': district.value,
         "Địa chỉ nhà": address.value,
         "Phương án giao hàng": method,
         "Ngày yêu cầu": formattedDate,
         "Ghi chú": note.value,
-        "Loại bánh": cake_name,
-        "Số lượng": cake_quantity,
-        "Tổng tiền": ttbill,
+        "Đơn hàng": cake
       };
       localStorage.setItem("order", JSON.stringify(order));
     }
-    // set_orrder();
+
     if (
       catch_error(name) &
       catch_error(phone) &
       catch_error(email) &
       catch_error(district) &
       catch_error(address) &
-      method
+      (typeof(method)=='string')
     ) {
-      console.log(a);
-      set_orrder();
+      console.log('Thông tin đơn hàng đã được lưu vào localStorage');
+      set_order();
     }
   });
 }

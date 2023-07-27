@@ -109,3 +109,31 @@ export async function main() {
 export async function format_price(params) {
   return params.toLocaleString("vi-VN") + " ₫";
 }
+
+export async function renderIcon() {
+  const cart = JSON.parse(localStorage.getItem("cake")) || {};
+  let value = Object.keys(cart).length;
+  let totalQuantity = 0;
+
+  for (const k in cart) {
+    if (cart.hasOwnProperty(k)) {
+      totalQuantity += cart[k].quantity;
+    }
+  }
+  let cake_value = totalQuantity;
+  let cart_value = document.querySelectorAll(".login .cart_value");
+  if (value === 0) {
+    cart_value.forEach(function (item) {
+      if (item.classList.contains("show")) {
+        item.classList.remove("show");
+        item.textContent = "";
+      }
+    });
+  } else {
+    cart_value.forEach(function (item) {
+      item.classList.add("show");
+      item.textContent = cake_value;
+      document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
+    });
+  }
+}

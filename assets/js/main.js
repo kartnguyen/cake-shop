@@ -1,4 +1,11 @@
-import { api_url, endPoint, removeLoader, fetch_data, main } from "./components/help.js";
+import {
+  api_url,
+  endPoint,
+  removeLoader,
+  fetch_data,
+  main,
+  renderIcon,
+} from "./components/help.js";
 
 let app = document.querySelector("main");
 
@@ -9,6 +16,7 @@ async function init_app() {
     let render = await page.render();
     app.appendChild(await render);
     await main();
+    await renderIcon();
     await page.callback();
   }
   if (location.pathname.includes("products")) {
@@ -17,6 +25,7 @@ async function init_app() {
     let render = await page.render();
     app.appendChild(await render);
     await main();
+    await renderIcon();
     await page.side_bar();
   }
   if (location.pathname.includes("about")) {
@@ -25,6 +34,7 @@ async function init_app() {
     let render = await page.render();
     app.appendChild(await render);
     await main();
+    await renderIcon();
     await page.callback();
   }
   if (location.pathname.includes("contact")) {
@@ -33,6 +43,7 @@ async function init_app() {
     let render = await page.render();
     app.appendChild(await render);
     await main();
+    await renderIcon();
   }
   if (location.pathname.includes("cart")) {
     await setTimeout(removeLoader, 2000);
@@ -41,13 +52,14 @@ async function init_app() {
     app.appendChild(await render);
     await main();
     await page.callback();
+    await renderIcon();
   }
   if (location.pathname.includes("product_detail")) {
     let pathname = location.pathname;
-    pathname = pathname.split('/')[2];
+    pathname = pathname.split("/")[2];
     let get_products_by_id = {
       api_url: api_url,
-      end_point: endPoint.cake + '/' + pathname,
+      end_point: endPoint.cake + "/" + pathname,
       method: "GET",
       async callback(params) {
         await setTimeout(removeLoader, 2000);
@@ -56,10 +68,11 @@ async function init_app() {
         app.appendChild(await render);
         await main();
         await page.render_cake_img();
+        await renderIcon();
         await page.callback(params);
-      }
+      },
     };
-    await fetch_data(get_products_by_id)
+    await fetch_data(get_products_by_id);
   }
 }
 init_app();

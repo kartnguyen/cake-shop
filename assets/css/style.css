@@ -130,6 +130,14 @@ nav {
 
 .login {
     padding-right: 2%;
+    position: relative;
+}
+.notice {
+    position: absolute;
+    top: 43px;
+    left: -15px;
+    text-align: center;
+    background-color: var(--primary);
 }
 
 .nav-bar a,
@@ -1003,7 +1011,6 @@ section:first-child {
 .cart_page .cart_obj .cake {
     padding-right: 34px;
     overflow: auto;
-    height: 238px;
 }
 
 .cart_page .cart_obj .cake_item {
@@ -1075,7 +1082,7 @@ section:first-child {
     margin: 12px 0;
     font-size: 18px;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
 }
 

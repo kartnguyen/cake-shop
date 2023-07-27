@@ -131,10 +131,16 @@ export async function callback(params) {
           }
         });
       } else {
+        let notice = document.createElement("div");
+        notice.classList.add("notice");
+        notice.innerHTML = `Đã thêm ${cake_value} vào giỏ hàng`;
+        
         cart_value.forEach(function (item) {
           item.classList.add("show");
           item.textContent = cake_value;
           document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
+          item.appendChild(notice);
+          // setTimeout (notice.remove(),1500);
         });
       }
     }
