@@ -445,7 +445,7 @@ export async function callback() {
 
   if (document.querySelector(".order .confirm")) {
     let confirm = document.querySelector(".order .confirm");
-    confirm.addEventListener("click", function () {
+    confirm.addEventListener("click", async function () {
       document.querySelector(".order .cake").style.height = "fit-content";
       catch_error(name);
       catch_error(phone);
@@ -487,22 +487,6 @@ export async function callback() {
         };
       }
 
-      function set_order() {
-        let order = {
-          "Họ tên": name.value,
-          "Số điện thoại": phone.value,
-          'Email': email.value,
-          'Quận': district.value,
-          "Địa chỉ nhà": address.value,
-          "Phương án giao hàng": method,
-          "Ngày yêu cầu": formattedDate,
-          "Ghi chú": note.value,
-          "Đơn hàng": cake,
-          "Giá trị đơn hàng": localStorage.getItem("bill"),
-        };
-        localStorage.setItem("order", JSON.stringify(order));
-      }
-
       if (
         catch_error(name) &
         catch_error(phone) &
@@ -512,7 +496,55 @@ export async function callback() {
         (typeof method == "string")
       ) {
         console.log("Thông tin đơn hàng đã được lưu vào localStorage");
-        set_order();
+
+        let order = {
+          "Họ tên": name.value,
+          "Số điện thoại": phone.value,
+          "Email": email.value,
+          "Quận": district.value,
+          "Địa chỉ nhà": address.value,
+          "Phương án giao hàng": method,
+          "Ngày yêu cầu": formattedDate,
+          "Ghi chú": note.value,
+          "Đơn hàng": cake,
+          "Giá trị đơn hàng": localStorage.getItem("bill"),
+        };
+
+        localStorage.setItem("order", JSON.stringify(order));
+
+        let overlay = document.createElement("div");
+        overlay.classList.add("overlay");
+        let formattedPrice = await format_price(order["Giá trị đơn hàng"])
+        let dialog = document.createElement("div");
+        dialog.classList.add("modal");
+        dialog.innerHTML = `
+          <div class="modal_content">
+          <div class="modal_text" style="margin-top: 0">Đơn hàng của quý khách ${order['Họ tên']} đã được tạo thành công.<br>Giá trị đơn hàng là <b>${formattedPrice}</b>.<br>
+          Cảm ơn quý khách!</div>
+          <div class="modal_btn">
+            <button class="m_btn btn-primary" id="ok" style="margin: 4px auto;">
+              <a href="/"style="color: #fff">Quay lại trang chủ</a>
+            </button>
+          </div>
+          </div>
+        `;
+        function remove_dialog(params) {
+          params.addEventListener("click", function () {
+            dialog.remove();
+            document.body.classList.remove("overflow-hidden");
+            overlay.remove();
+          });
+        }
+    
+        document.body.classList.add("overflow-hidden");
+        document.querySelector("header .row").appendChild(overlay);
+        document.body.appendChild(dialog);
+    
+        remove_dialog(dialog.querySelector("#ok"));
+        remove_dialog(document.querySelector(".overlay"));
+        dialog.querySelector("#ok").addEventListener('click',function () {
+          localStorage.clear();
+        })
       }
     });
   }
