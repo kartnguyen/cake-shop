@@ -114,6 +114,8 @@ export async function render() {
 
   document.querySelector(".nav-bar a.active").classList.remove("active");
   document.querySelector(".nav-bar .products").classList.add("active");
+  
+  await fetch_data(get_products);
 
   return template;
 }
