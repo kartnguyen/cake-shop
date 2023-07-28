@@ -81,14 +81,18 @@ export async function render() {
               <h3>Phương thức thanh toán</h3>
               <div class="list">
                 <div class="method_item">
-                  <input type="radio" id="item1" name="method" value="online_payment">
-                  <label for="item1" class="check-box"></label>
-                  <p>Thanh toán trực tuyến</p>
+                  <label for="item1" class="item">
+                    <input type="radio" id="item1" name="method" value="online_payment">
+                    <label for="item1" class="check-box"></label>
+                    <p>Thanh toán trực tuyến</p>
+                  </label>
                 </div>
                 <div class="method_item">
+                  <label for="item2" class="item">
                     <input type="radio" id="item2" name="method" value="on_delivery">
-                    <label for="item2" class="check-box"></label>
+                    <label class="check-box" for="item2"></label>
                     <p>Thanh toán khi nhận hàng</p>
+                  </label>
                 </div>
               </div>
             </div>
@@ -153,7 +157,6 @@ export async function render() {
       let allTotalPrice = calculateTotalPrice(cart);
 
       let shippingFee;
-      console.log(Object.keys(cart).length)
       if (Object.keys(cart).length == 1) {
         shippingFee = 35000;
       } else {
@@ -161,6 +164,7 @@ export async function render() {
       }
 
       allTotalPrice += shippingFee;
+      localStorage.setItem("bill", allTotalPrice);
       let ttfee = await format_price(shippingFee);
       let ttprice = await format_price(allTotalPrice);
 
@@ -312,39 +316,41 @@ export async function render() {
   const checkbox = template.querySelector("#cb");
   let data = "ON";
 
-  template
-    .querySelector(".checkbox-wrapper .tgl-btn")
-    .addEventListener("click", function (event) {
-      if (data === "ON") {
-        data = "OFF";
-        checkbox.checked = false;
-        template
-          .querySelector(".schedule .list")
-          .classList.add("show", "animated", "fadeInLeftBig");
-
-        const dateInput = document.querySelector(".schedule .dates");
-        const currentDate = new Date();
-        const year = currentDate.getFullYear();
-        const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-        const day = String(currentDate.getDate()).padStart(2, "0");
-        const defaultDate = `${year}-${month}-${day}`;
-        dateInput.value = defaultDate;
-      } else {
-        data = "ON";
-        checkbox.checked = true;
-        template
-          .querySelector(".schedule .list")
-          .classList.remove("fadeInLeftBig");
-        template
-          .querySelector(".schedule .list")
-          .classList.add("fadeOutLeftBig");
-        setTimeout(() => {
+  if (template.querySelector(".checkbox-wrapper .tgl-btn")) {
+    template
+      .querySelector(".checkbox-wrapper .tgl-btn")
+      .addEventListener("click", function (event) {
+        if (data === "ON") {
+          data = "OFF";
+          checkbox.checked = false;
           template
             .querySelector(".schedule .list")
-            .classList.remove("show", "fadeOutLeftBig", "animated");
-        }, 400);
-      }
-    });
+            .classList.add("show", "animated", "fadeInLeftBig");
+
+          const dateInput = document.querySelector(".schedule .dates");
+          const currentDate = new Date();
+          const year = currentDate.getFullYear();
+          const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+          const day = String(currentDate.getDate()).padStart(2, "0");
+          const defaultDate = `${year}-${month}-${day}`;
+          dateInput.value = defaultDate;
+        } else {
+          data = "ON";
+          checkbox.checked = true;
+          template
+            .querySelector(".schedule .list")
+            .classList.remove("fadeInLeftBig");
+          template
+            .querySelector(".schedule .list")
+            .classList.add("fadeOutLeftBig");
+          setTimeout(() => {
+            template
+              .querySelector(".schedule .list")
+              .classList.remove("show", "fadeOutLeftBig", "animated");
+          }, 400);
+        }
+      });
+  }
 
   return template;
 }
@@ -359,19 +365,6 @@ export async function callback() {
     note = document.querySelector(".schedule .note"),
     method = false,
     cake = {};
-
-  const cart = JSON.parse(localStorage.getItem("cake")) || {};
-  let products_number = 0;
-
-  for (let [k, v] of Object.entries(cart)) {
-    products_number+=1;
-    let { name, quantity } = v;
-
-    cake['Cake ' + products_number] = {
-      name: name,
-      quantity: quantity
-    };
-  }
 
   const labels = document.querySelectorAll(".check-box");
 
@@ -450,60 +443,77 @@ export async function callback() {
     return false;
   }
 
-  let confirm = document.querySelector(".order .confirm");
-  confirm.addEventListener("click", function () {
-    document.querySelector(".order .cake").style.height = "fit-content";
-    catch_error(name);
-    catch_error(phone);
-    catch_error(email);
-    catch_error(district);
-    catch_error(address);
+  if (document.querySelector(".order .confirm")) {
+    let confirm = document.querySelector(".order .confirm");
+    confirm.addEventListener("click", function () {
+      document.querySelector(".order .cake").style.height = "fit-content";
+      catch_error(name);
+      catch_error(phone);
+      catch_error(email);
+      catch_error(district);
+      catch_error(address);
 
-    if (method == false) {
-      if (!document.querySelector(".method .list .method_error")) {
-        let method_error = document.createElement("p");
-        method_error.classList.add("method_error");
-        method_error.style.color = "red";
-        method_error.innerHTML = `Bạn chưa chọn phương thức thanh toán`;
-        document.querySelector(".method .list").appendChild(method_error);
+      if (method == false) {
+        if (!document.querySelector(".method .list .method_error")) {
+          let method_error = document.createElement("p");
+          method_error.classList.add("method_error");
+          method_error.style.color = "red";
+          method_error.innerHTML = `Bạn chưa chọn phương thức thanh toán`;
+          document.querySelector(".method .list").appendChild(method_error);
+        }
+      } else {
+        if (document.querySelector(".method .list .method_error")) {
+          document.querySelector(".method .list .method_error").remove();
+        }
       }
-    } else {
-      if (document.querySelector(".method .list .method_error")) {
-        document.querySelector(".method .list .method_error").remove();
+      let checkbox = document.querySelector("#cb");
+      let formattedDate;
+      if (checkbox.checked) {
+        const selectedDate = dates.value;
+        const dateArray = selectedDate.split("-");
+        formattedDate = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
       }
-    }
-    let checkbox = document.querySelector("#cb");
-    let formattedDate;
-    if (checkbox.checked) {
-      const selectedDate = dates.value;
-      const dateArray = selectedDate.split("-");
-      formattedDate = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
-    }
-    function set_order() {
-      let order = {
-        "Họ tên": name.value,
-        "Số điện thoại": phone.value,
-        'Email': email.value,
-        'Quận': district.value,
-        "Địa chỉ nhà": address.value,
-        "Phương án giao hàng": method,
-        "Ngày yêu cầu": formattedDate,
-        "Ghi chú": note.value,
-        "Đơn hàng": cake
-      };
-      localStorage.setItem("order", JSON.stringify(order));
-    }
 
-    if (
-      catch_error(name) &
-      catch_error(phone) &
-      catch_error(email) &
-      catch_error(district) &
-      catch_error(address) &
-      (typeof(method)=='string')
-    ) {
-      console.log('Thông tin đơn hàng đã được lưu vào localStorage');
-      set_order();
-    }
-  });
+      const cart = JSON.parse(localStorage.getItem("cake")) || {};
+      let products_number = 0;
+
+      for (let [k, v] of Object.entries(cart)) {
+        products_number += 1;
+        let { name, quantity } = v;
+
+        cake["Cake " + products_number] = {
+          name: name,
+          quantity: quantity,
+        };
+      }
+
+      function set_order() {
+        let order = {
+          "Họ tên": name.value,
+          "Số điện thoại": phone.value,
+          'Email': email.value,
+          'Quận': district.value,
+          "Địa chỉ nhà": address.value,
+          "Phương án giao hàng": method,
+          "Ngày yêu cầu": formattedDate,
+          "Ghi chú": note.value,
+          "Đơn hàng": cake,
+          "Giá trị đơn hàng": localStorage.getItem("bill"),
+        };
+        localStorage.setItem("order", JSON.stringify(order));
+      }
+
+      if (
+        catch_error(name) &
+        catch_error(phone) &
+        catch_error(email) &
+        catch_error(district) &
+        catch_error(address) &
+        (typeof method == "string")
+      ) {
+        console.log("Thông tin đơn hàng đã được lưu vào localStorage");
+        set_order();
+      }
+    });
+  }
 }

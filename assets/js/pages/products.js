@@ -115,20 +115,6 @@ export async function render() {
   document.querySelector(".nav-bar a.active").classList.remove("active");
   document.querySelector(".nav-bar .products").classList.add("active");
 
-  const getAllProducts = await fetch_data(get_products);
-
-  // function filterProductsByCate(products, cateToFilter) {
-  //   const filteredProducts = products.filter( function(product) {
-  //     return product.category === cateToFilter;
-  //   })
-  //   return filteredProducts;
-  // }
-
-  // template.querySelector(".mood_cake").addEventListener("click", function (event) {
-  //   const filteredProducts = filterProductsByCate(getAllProducts, "mc");
-  //   render_products(filteredProducts);
-  // });
-
   return template;
 }
 

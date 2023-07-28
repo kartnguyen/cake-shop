@@ -115,6 +115,7 @@ export async function callback(params) {
     function renderIcon(params) {
       let value = Object.keys(params).length;
       let totalQuantity = 0;
+      let notice = document.createElement("div");
 
       for (const k in params) {
         if (params.hasOwnProperty(k)) {
@@ -122,6 +123,7 @@ export async function callback(params) {
         }
       }
       let cake_value = totalQuantity;
+      let cake_input = document.querySelector('.input-qty').textContent;
       let cart_value = document.querySelectorAll(".login .cart_value");
       if (value === 0) {
         cart_value.forEach(function (item) {
@@ -131,18 +133,19 @@ export async function callback(params) {
           }
         });
       } else {
-        let notice = document.createElement("div");
-        notice.classList.add("notice");
-        notice.innerHTML = `Đã thêm ${cake_value} vào giỏ hàng`;
+        notice.classList.add("notice","animated","tada");
+        notice.innerHTML = `Đã thêm ${cake_input} bánh vào giỏ hàng`;
         
         cart_value.forEach(function (item) {
           item.classList.add("show");
           item.textContent = cake_value;
           document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
           item.appendChild(notice);
-          // setTimeout (notice.remove(),1500);
         });
       }
+      setTimeout(() => {
+        notice.remove();
+      }, 1700);
     }
   });
 }
