@@ -366,7 +366,7 @@ export async function callback() {
     method = false,
     cake = {};
 
-  const labels = document.querySelectorAll(".check-box");
+  const labels = document.querySelectorAll(".method_item .item");
 
   labels.forEach((label) => {
     label.addEventListener("click", (e) => {

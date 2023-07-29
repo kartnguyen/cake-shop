@@ -686,7 +686,8 @@ section:first-child {
 
     .products_page .side_bar.sticky {
         position: fixed;
-        top: 64px;
+        top: 66px;
+        z-index: 111;
     }
 
     .products_page .products {
@@ -1478,8 +1479,12 @@ section:first-child {
     .cart_obj .method_item:first-child {
         margin-bottom: 16px;
     }
-    .cart_obj .list .method_error{
+
+    .cart_obj .list .method_error {
         margin-top: 14px;
+    }
+    .cart_obj .order h3 {
+        margin-top: 24px;
     }
 }
 
@@ -1548,4 +1553,119 @@ section:first-child {
 .m_btn:hover {
     background-color: var(--secondary);
     color: #fff;
+}
+
+/* ---------------------------contact--------------------------- */
+.contact_page {
+    padding-bottom: 4em;
+}
+
+.contact_page .form {
+    width: 70%;
+    margin: 0 auto;
+    display: grid;
+    grid-template: auto / 65% 1fr;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.contact_page .form .list {
+    background-color: #fff;
+    padding: 34px;
+}
+
+.contact_page .form .list label {
+    display: flex;
+}
+
+.contact_page .required {
+    color: red;
+    margin-left: 8px;
+}
+
+.contact_page .form .infor {
+    background-color: var(--primary);
+    padding: 34px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact_page .name {
+    margin-bottom: 16px;
+}
+
+.contact_page .content {
+    margin-bottom: 16px;
+}
+
+.contact_page .content p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.contact_page .input,
+.contact_page #mess {
+    padding: 0.6rem;
+    border: 1px solid #cdcccc;
+    border-radius: 5px;
+    width: 100%;
+    margin: 16px 0;
+}
+
+.contact_page textarea {
+    resize: none;
+}
+
+.contact_page .list button {
+    align-items: center;
+    background-color: var(--primary);
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 16px;
+    justify-content: center;
+    padding: 11px 70px;
+    position: relative;
+    transition: all 250ms;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.contact_page .list button:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    transform: translateY(-1px);
+    background-color: var(--secondary);
+    color: #fff;
+}
+
+.contact_page #map {
+    width: 80%;
+    margin-inline: auto;
+    height: 500px;
+    margin-top: 4em;
+    border: 1px solid var(--primary);
+}
+
+@media (max-width:1023px) {
+    .contact_page #map {
+        width: 100%;
+        height: 250px;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+    .contact_page .form {
+        display: block;
+        width: 100%;
+    }
+    .contact_page .form .infor,
+    .contact_page .form .list {
+        padding: 24px;
+    }
 }
