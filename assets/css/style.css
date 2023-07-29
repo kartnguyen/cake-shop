@@ -630,16 +630,20 @@ section:first-child {
     padding-bottom: 30px;
 }
 
-.products_page .filter {
+.products_page .filter a {
     text-transform: uppercase;
     font-size: 15px;
     cursor: pointer;
     line-height: 2.5;
 }
 
-.products_page .filter:hover {
+.products_page .filter:hover a {
     color: var(--secondary);
     text-decoration: underline;
+}
+
+.products_page .filter.active a {
+    color: var(--primary);
 }
 
 .products_page h3 {
@@ -657,26 +661,34 @@ section:first-child {
         box-sizing: content-box;
         min-height: 0;
         height: 85px;
+        justify-content: center;
     }
 
     .products_page .side_bar {
-        width: 100%;
+        width: 300px;
+        border-radius: 14px;
         padding: 12px;
         background-color: #F6F6F6;
         border-radius: 8px;
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         height: fit-content;
     }
-    
+
     .products_page .side_bar ul {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
     }
+
+    .products_page .side_bar ul li {
+        margin-right: 16px;
+    }
+
     .products_page .side_bar.sticky {
         position: fixed;
         top: 64px;
     }
+
     .products_page .products {
         display: grid;
         grid-template: auto / repeat(2, 1fr);
@@ -813,17 +825,29 @@ section:first-child {
 }
 
 @media (max-width:1023px) {
+
     .about_page .chef_infor,
     .about_page .head_img,
     .about_page .profile {
         display: block;
     }
+
     .about_page .chef {
         width: 80%;
         margin: 32px auto;
         height: fit-content;
     }
+
+    .about_page .social-list {
+        margin-inline: auto;
+        width: 80%;
+    }
+
+    .about_page .head_img p {
+        margin-bottom: 24px;
+    }
 }
+
 /* product details */
 
 
@@ -959,6 +983,38 @@ section:first-child {
 
 .products_details_page .content p {
     line-height: 1.8;
+}
+
+@media (max-width:1023px) {
+    .products_details_page .container {
+        display: block;
+    }
+
+    .products_details_page .quantity {
+        display: block;
+    }
+
+    .products_details_page .btn-add {
+        margin-left: 0;
+        margin-top: 24px;
+    }
+
+    .products_details_page .buttons_added {
+        margin-left: 2px;
+    }
+
+    .products_details_page .slider {
+        margin: 0;
+    }
+
+    .about_page .content h3 {
+        font-size: 38px;
+    }
+
+    .about_page .head_img .img,
+    .about_page .chef img {
+        width: 100%;
+    }
 }
 
 /* ---------------------------------cart------------------------------------- */
@@ -1397,6 +1453,35 @@ section:first-child {
     animation: dothatopcheck-19 0.4s ease 0s forwards;
 }
 
+@media (max-width:1023px) {
+    .cart_page .none_obj h2 {
+        font-size: 26px;
+    }
+
+    .cart_page .none_obj button {
+        font-size: 16px;
+    }
+
+    .cart_page .cart_obj {
+        display: block;
+    }
+
+    .cart_page .cart_obj .delivery .list,
+    .cart_page .cart_obj .method .list {
+        display: block;
+    }
+
+    .cart_obj .information .delivery .item {
+        margin-bottom: 16px;
+    }
+
+    .cart_obj .method_item:first-child {
+        margin-bottom: 16px;
+    }
+    .cart_obj .list .method_error{
+        margin-top: 14px;
+    }
+}
 
 /* ----------------------------modal--------------------------- */
 

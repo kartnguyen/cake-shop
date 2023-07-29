@@ -25,9 +25,15 @@ export async function render() {
       <div class="side_container">
         <div class="side_bar">
           <ul>
-              <li class="filter active all">All</li>
-              <li class="filter mood_cake">Mood Cake</li>
-              <li class="filter lover_cake">Lover Cake</li>
+              <li class="filter active all">
+                <a href="#">All</a>
+              </li>
+              <li class="filter mood_cake">
+                <a href="#">Mood Cake</a>
+              </li>
+              <li class="filter lover_cake">
+                <a href="#">Lover Cake</a>
+              </li>
           </ul>
         </div>
       </div>

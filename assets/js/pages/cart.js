@@ -458,7 +458,7 @@ export async function callback() {
           let method_error = document.createElement("p");
           method_error.classList.add("method_error");
           method_error.style.color = "red";
-          method_error.innerHTML = `Bạn chưa chọn phương thức thanh toán`;
+          method_error.innerHTML = `Bạn chưa chọn phương thức thanh toán!`;
           document.querySelector(".method .list").appendChild(method_error);
         }
       } else {
