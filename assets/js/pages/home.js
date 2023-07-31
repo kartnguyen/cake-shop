@@ -1,4 +1,22 @@
+import {
+  api_url,
+  endPoint,
+  fetch_data,
+  format_price,
+} from "../components/help.js";
+import { loading } from "../components/load.js";
+
 export async function render() {
+  let get_products = {
+    api_url: api_url,
+    end_point: endPoint.cake,
+    method: "GET",
+    async callback(params) {
+      await loading.item();
+      await render_products(params);
+    },
+  };
+
   let template = document.createElement("div");
   template.classList.add("home_page");
   template.innerHTML = `
@@ -21,11 +39,21 @@ export async function render() {
                     </a>
                 </div>
             </div>
-            <div class="owl-carousel owl-theme">
+            <div class="slide-img owl-carousel owl-theme">
                 <div class="item" style="background-image: url(./assets/images/cake/store-1.jpg);"></div>
                 <div class="item" style="background-image: url(./assets/images/cake/store-2.jpg);"></div>
                 <div class="item" style="background-image: url(./assets/images/cake/store-3.jpg);"></div>
             </div>
+        </div>
+        </section>
+        <section>
+        <div class="container" data-aos="fade-up" data-aos-easing="linear"
+        data-aos-duration="500">
+            <div class="products-title">
+                <h2 class="name-products">Danh mục sản phẩm</h2>
+                <a href="/products">Xem thêm ></a>
+            </div>
+            <div class="slider-products owl-carousel owl-theme"></div>
         </div>
         </section>
         <section>
@@ -67,11 +95,33 @@ export async function render() {
         </section>
     `;
 
+  async function render_products(params) {
+    template.querySelector(".slider-products").innerHTML = "";
+    for (let cake of params) {
+      let { id, image, name, price } = cake;
+      let div = document.createElement("div");
+      div.classList.add("item");
+      let formattedPrice = await format_price(price);
+      div.innerHTML = `
+                <div class="img" style="background-image: url(${image[0]});"></div>
+                <div class="content">
+                    <h3>${name}</h3>
+                    <h4>${formattedPrice}</h4>
+                </div>
+                <a href="/product_detail/${id}">Xem thêm</a>
+              `;
+
+      template.querySelector(".slider-products").appendChild(div);
+    }
+  }
+
+  await fetch_data(get_products);
+
   return template;
 }
 
 export async function callback() {
-  $(".owl-carousel").owlCarousel({
+  $(".slide-img").owlCarousel({
     items: 1,
     nav: false,
     dots: false,
@@ -79,6 +129,25 @@ export async function callback() {
     mouseDrag: false,
     loop: true,
     autoplay: true,
+  });
+
+  $(".slider-products").owlCarousel({
+    loop: true,
+    autoplay: true,
+    margin: 15,
+    nav: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 5,
+      },
+    },
+    navText: ['<i class="fa-solid fa-backward"></i>','<i class="fa-solid fa-forward"></i>']
   });
 
   AOS.init();
