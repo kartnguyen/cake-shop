@@ -97,6 +97,7 @@ button {
     overflow: hidden;
 }
 
+
 /* Header */
 header {
     position: fixed;
@@ -618,11 +619,13 @@ section:first-child {
     top: 38%;
     left: 0;
 }
+
 .slider-products .owl-next {
     position: absolute;
     top: 38%;
     right: 0;
 }
+
 .owl-theme .owl-nav [class*=owl-] {
     color: var(--primary);
     font-size: 16px;
@@ -633,9 +636,11 @@ section:first-child {
     cursor: pointer;
     border-radius: 3px;
 }
+
 .owl-theme .owl-dots .owl-dot.active span {
     background: var(--primary);
 }
+
 @media (max-width:1023px) {
     .home_page .title {
         display: block;
@@ -661,6 +666,7 @@ section:first-child {
     .home_page .products-title a {
         margin-top: 14px;
     }
+
     .home_page .name-products {
         margin-top: 16px;
     }
@@ -972,7 +978,7 @@ section:first-child {
 /* product details */
 
 
-.products_details_page .container {
+.products_details_page .products-container {
     display: grid;
     grid-template: auto / 40% 1fr;
     gap: 24px;
@@ -1104,6 +1110,74 @@ section:first-child {
 
 .products_details_page .content p {
     line-height: 1.8;
+}
+.products_details_page .related .item {
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-top: 34px;
+    margin-bottom: 34px;
+    position: relative;
+    padding-bottom: 28px;
+}
+
+.products_details_page .related .item h3 {
+    color: var(--primary);
+}
+
+.products_details_page .related .item h4 {
+    color: gray;
+}
+
+.products_details_page .related a {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: gray;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 18px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.products_details_page .related .item:hover a {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+.products_details_page .related .img {
+    width: 80%;
+    margin: auto;
+    height: auto;
+    aspect-ratio: 1/1;
+    background: no-repeat center;
+    background-size: cover;
+}
+
+.products_details_page .related .content {
+    text-align: center;
+    line-height: 1.6;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+.related .owl-prev {
+    position: absolute;
+    top: 38%;
+    left: 0;
+}
+
+.related .owl-next {
+    position: absolute;
+    top: 38%;
+    right: 0;
 }
 
 @media (max-width:1023px) {

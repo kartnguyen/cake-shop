@@ -9,29 +9,35 @@ import {
 export async function render(params) {
   let template = document.createElement("section");
   template.classList.add("products_details_page");
-  let { id, image, name, content, sub_title, price, quantity } = params;
-
+  let { id, image, name, content, sub_title, price, quantity, category } =
+    params;
+  let main_cate = category;
   let formattedPrice = await format_price(price);
   template.innerHTML = `
   	<div class="container">
-      <div class="slider">
-        <div class="slide cake-img" style="background-image: url(${image[0]})"></div>
-        <div class="images"></div>
+      <div class="products-container">
+        <div class="slider">
+          <div class="slide cake-img" style="background-image: url(${image[0]})"></div>
+          <div class="images"></div>
+        </div>
+        <div class="content">
+            <h3 class="name">${name}</h3>
+            <h4 class="sub_title">${sub_title}</h4>
+            <div class="quantity">
+                <div class="buttons_added">
+                    <button class="minus is-form"><i class="fa-solid fa-minus fa-lg"></i></button>
+                    <span class="input-qty">${quantity}</span>
+                    <button class="plus is-form"><i class="fa-solid fa-plus fa-lg"></i></button>
+                </div>
+                <button class="btn-add">thêm vào giỏ hàng</button>
+            </div>
+            <h4 class="price">${formattedPrice}</h4>
+            <p>${content}</p>
+        </div>
       </div>
-      <div class="content">
-          <h3 class="name">${name}</h3>
-          <h4 class="sub_title">${sub_title}</h4>
-          <div class="quantity">
-              <div class="buttons_added">
-                  <button class="minus is-form"><i class="fa-solid fa-minus fa-lg"></i></button>
-                  <span class="input-qty">${quantity}</span>
-                  <button class="plus is-form"><i class="fa-solid fa-plus fa-lg"></i></button>
-              </div>
-              <button class="btn-add">thêm vào giỏ hàng</button>
-          </div>
-          <h4 class="price">${formattedPrice}</h4>
-          <p>${content}</p>
-      </div>
+    </div>
+    <div class="container">
+      <div class="related owl-carousel owl-theme"></div>
     </div>
 	`;
 
@@ -44,6 +50,36 @@ export async function render(params) {
 
     template.querySelector(".images").appendChild(cake_img);
   }
+
+  let get_products = {
+    api_url: api_url,
+    end_point: endPoint.cake,
+    method: "GET",
+    async callback(params) {
+      await render_products(params);
+    },
+  };
+  async function render_products(params) {
+    for (let cake of params) {
+      let { id, image, name, price, category } = cake;
+      if (main_cate.includes(category[0])) {
+        let related_product = document.createElement("div");
+        related_product.classList.add("item");
+        let formattedPrice = await format_price(price);
+        related_product.innerHTML = `
+          <div class="img" style="background-image: url(${image[0]});"></div>
+          <div class="content">
+              <h3>${name}</h3>
+              <h4>${formattedPrice}</h4>
+          </div>
+          <a href="/product_detail/${id}">Xem sản phẩm</a>
+        `;
+        template.querySelector('.related').appendChild(related_product);
+      }
+    }
+  }
+
+  fetch_data(get_products)
 
   document.querySelector(".nav-bar a.active").classList.remove("active");
   document.querySelector(".nav-bar .products").classList.add("active");
@@ -128,7 +164,7 @@ export async function callback(params) {
         }
       }
       let cake_value = totalQuantity;
-      let cake_input = document.querySelector('.input-qty').textContent;
+      let cake_input = document.querySelector(".input-qty").textContent;
       let cart_value = document.querySelectorAll(".login .cart_value");
       if (value === 0) {
         cart_value.forEach(function (item) {
@@ -138,9 +174,9 @@ export async function callback(params) {
           }
         });
       } else {
-        notice.classList.add("notice","animated","tada");
+        notice.classList.add("notice", "animated", "tada");
         notice.innerHTML = `Đã thêm ${cake_input} bánh vào giỏ hàng`;
-        
+
         cart_value.forEach(function (item) {
           item.classList.add("show");
           item.textContent = cake_value;
@@ -156,4 +192,25 @@ export async function callback(params) {
 }
 export async function remove() {
   await removeLoader();
+}
+
+export async function render_related() {
+  $(".related").owlCarousel({
+    loop: true,
+    autoplay: true,
+    margin: 15,
+    nav: true,
+    responsive: {
+      0: {
+        items: 2,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 4,
+      },
+    },
+    navText: ['<i class="fa-solid fa-chevron-left"></i>','<i class="fa-solid fa-chevron-right"></i>']
+  });
 }

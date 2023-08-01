@@ -1,6 +1,5 @@
 export async function render_footer() {
     let template = document.createElement("div");
-    template.classList.add("container","footer");
     template.innerHTML = `
     <div class="container footer">
         <div class="row">

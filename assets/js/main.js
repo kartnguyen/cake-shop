@@ -60,6 +60,7 @@ async function init_app() {
     await renderIcon();
   }
   if (location.pathname.includes("product_detail")) {
+    let page = await import("./pages/product_detail.js");
     let pathname = location.pathname;
     pathname = pathname.split("/")[2];
     let get_products_by_id = {
@@ -67,7 +68,6 @@ async function init_app() {
       end_point: endPoint.cake + "/" + pathname,
       method: "GET",
       async callback(params) {
-        let page = await import("./pages/product_detail.js");
         let render = await page.render(params);
         app.appendChild(await render);
         await main();
@@ -78,6 +78,7 @@ async function init_app() {
       },
     };
     await fetch_data(get_products_by_id);
+    await page.render_related();
   }
 }
 init_app();
