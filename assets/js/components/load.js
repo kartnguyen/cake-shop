@@ -8,14 +8,5 @@ export const loading = {
         </div>
 		`;
 		return div;
-	},
-	item() {
-		let div = document.createElement('div');
-		div.classList.add('loader');
-		div.innerHTML = `
-
-		`;
-		
-		return div;
 	}
 }

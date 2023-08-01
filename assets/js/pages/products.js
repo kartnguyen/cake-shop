@@ -3,8 +3,8 @@ import {
   endPoint,
   fetch_data,
   format_price,
+  removeLoader
 } from "../components/help.js";
-import { loading } from "../components/load.js";
 
 export async function render() {
   let get_products = {
@@ -12,7 +12,6 @@ export async function render() {
     end_point: endPoint.cake,
     method: "GET",
     async callback(params) {
-      await loading.item();
       await render_products(params);
     },
   };
@@ -127,6 +126,7 @@ export async function render() {
 }
 
 export async function side_bar() {
+  await removeLoader();
   window.addEventListener("scroll", function () {
     var side_bar = document.querySelector(".side_bar");
 

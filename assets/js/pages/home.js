@@ -3,8 +3,8 @@ import {
   endPoint,
   fetch_data,
   format_price,
+  removeLoader,
 } from "../components/help.js";
-import { loading } from "../components/load.js";
 
 export async function render() {
   let get_products = {
@@ -12,7 +12,6 @@ export async function render() {
     end_point: endPoint.cake,
     method: "GET",
     async callback(params) {
-      await loading.item();
       await render_products(params);
     },
   };
@@ -51,7 +50,7 @@ export async function render() {
         data-aos-duration="500">
             <div class="products-title">
                 <h2 class="name-products">Danh mục sản phẩm</h2>
-                <a href="/products">Xem thêm ></a>
+                <a href="/products">Xem thêm</a>
             </div>
             <div class="slider-products owl-carousel owl-theme"></div>
         </div>
@@ -108,7 +107,7 @@ export async function render() {
                     <h3>${name}</h3>
                     <h4>${formattedPrice}</h4>
                 </div>
-                <a href="/product_detail/${id}">Xem thêm</a>
+                <a href="/product_detail/${id}">Xem sản phẩm</a>
               `;
 
       template.querySelector(".slider-products").appendChild(div);
@@ -121,6 +120,7 @@ export async function render() {
 }
 
 export async function callback() {
+  await removeLoader();
   $(".slide-img").owlCarousel({
     items: 1,
     nav: false,
@@ -138,16 +138,16 @@ export async function callback() {
     nav: true,
     responsive: {
       0: {
-        items: 1,
+        items: 2,
       },
       600: {
         items: 3,
       },
       1000: {
-        items: 5,
+        items: 4,
       },
     },
-    navText: ['<i class="fa-solid fa-backward"></i>','<i class="fa-solid fa-forward"></i>']
+    navText: ['<i class="fa-solid fa-chevron-left"></i>','<i class="fa-solid fa-chevron-right"></i>']
   });
 
   AOS.init();

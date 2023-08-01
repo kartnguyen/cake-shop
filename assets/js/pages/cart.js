@@ -3,9 +3,8 @@ import {
   endPoint,
   fetch_data,
   format_price,
-  main,
+  removeLoader,
 } from "../components/help.js";
-import { loading } from "../components/load.js";
 
 export async function render() {
   let template = document.createElement("section");
@@ -200,6 +199,16 @@ export async function render() {
   }
   renderCart(cart);
 
+  const order = JSON.parse(localStorage.getItem("order")) || {};
+
+  if (Object.keys(order).length > 0) {
+    template.querySelector(".name").value = `${order["Họ tên"]}`;
+    template.querySelector(".phone").value = `${order["Số điện thoại"]}`;
+    template.querySelector(".email").value = `${order["Email"]}`;
+    template.querySelector(".district").value = `${order["Quận"]}`;
+    template.querySelector(".address").value = `${order["Địa chỉ nhà"]}`;
+  }
+
   function handleQuantity(params) {
     let { type, key } = params;
     if (type == "minus") {
@@ -333,6 +342,7 @@ export async function render() {
           const month = String(currentDate.getMonth() + 1).padStart(2, "0");
           const day = String(currentDate.getDate()).padStart(2, "0");
           const defaultDate = `${year}-${month}-${day}`;
+          dateInput.min = defaultDate;
           dateInput.value = defaultDate;
         } else {
           data = "ON";
@@ -356,6 +366,7 @@ export async function render() {
 }
 
 export async function callback() {
+  await removeLoader();
   let name = document.querySelector(".delivery .name"),
     phone = document.querySelector(".delivery .phone"),
     email = document.querySelector(".delivery .email"),
@@ -366,7 +377,7 @@ export async function callback() {
     method = false,
     cake = {};
 
-  const labels = document.querySelectorAll(".method_item .item");
+  let labels = document.querySelectorAll(".method_item .item");
 
   labels.forEach((label) => {
     label.addEventListener("click", (e) => {
@@ -495,7 +506,6 @@ export async function callback() {
         catch_error(address) &
         (typeof method == "string")
       ) {
-        console.log("Thông tin đơn hàng đã được lưu vào localStorage");
 
         let order = {
           "Họ tên": name.value,
@@ -514,12 +524,12 @@ export async function callback() {
 
         let overlay = document.createElement("div");
         overlay.classList.add("overlay");
-        let formattedPrice = await format_price(order["Giá trị đơn hàng"])
+        let formattedPrice = await format_price(parseFloat(order["Giá trị đơn hàng"]));
         let dialog = document.createElement("div");
         dialog.classList.add("modal");
         dialog.innerHTML = `
           <div class="modal_content">
-          <div class="modal_text" style="margin-top: 0">Đơn hàng của quý khách ${order['Họ tên']} đã được tạo thành công.<br>Giá trị đơn hàng là <b>${formattedPrice}</b>.<br>
+          <div class="modal_text" style="margin-top: 14px">Đơn hàng đã được tạo thành công.<br>Giá trị đơn hàng là <strong>${formattedPrice}</strong>.<br>
           Cảm ơn quý khách!</div>
           <div class="modal_btn">
             <button class="m_btn btn-primary" id="ok" style="margin: 4px auto;">
@@ -535,16 +545,16 @@ export async function callback() {
             overlay.remove();
           });
         }
-    
+
         document.body.classList.add("overflow-hidden");
         document.querySelector("header .row").appendChild(overlay);
         document.body.appendChild(dialog);
-    
+
         remove_dialog(dialog.querySelector("#ok"));
         remove_dialog(document.querySelector(".overlay"));
-        dialog.querySelector("#ok").addEventListener('click',function () {
+        dialog.querySelector("#ok").addEventListener("click", function () {
           localStorage.clear();
-        })
+        });
       }
     });
   }

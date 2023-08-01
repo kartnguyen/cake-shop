@@ -1,4 +1,11 @@
-import { chef } from "../components/help.js";
+import {
+  api_url,
+  endPoint,
+  fetch_data,
+  format_price,
+  removeLoader,
+  chef
+} from "../components/help.js";
 
 export async function render() {
   let template = document.createElement("section");
@@ -90,5 +97,6 @@ export async function render() {
 }
 
 export async function callback() {
+  await removeLoader();
   AOS.init();
 }

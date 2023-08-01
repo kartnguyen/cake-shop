@@ -1,5 +1,10 @@
-import { loading } from "../components/load.js";
-import { format_price } from "../components/help.js";
+import {
+  api_url,
+  endPoint,
+  fetch_data,
+  format_price,
+  removeLoader,
+} from "../components/help.js";
 
 export async function render(params) {
   let template = document.createElement("section");
@@ -148,4 +153,7 @@ export async function callback(params) {
       }, 1700);
     }
   });
+}
+export async function remove() {
+  await removeLoader();
 }

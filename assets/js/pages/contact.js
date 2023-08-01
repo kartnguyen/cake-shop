@@ -1,3 +1,11 @@
+import {
+  api_url,
+  endPoint,
+  fetch_data,
+  format_price,
+  removeLoader,
+} from "../components/help.js";
+
 export async function render() {
   let template = document.createElement("section");
   template.classList.add("contact_page");
@@ -127,4 +135,8 @@ export async function render() {
   });
 
   return template;
+}
+
+export async function callback() {
+  await removeLoader();
 }

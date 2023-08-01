@@ -6,12 +6,20 @@ import {
   main,
   renderIcon,
 } from "./components/help.js";
+import { loading } from "./components/load.js";
+import { render_header } from "./components/header.js";
+import { render_footer } from "./components/footer.js";
 
 let app = document.querySelector("main");
+let header = document.querySelector("header");
+let footer = document.querySelector("footer");
 
 async function init_app() {
+  app.appendChild(loading.cake_gif());
+  header.appendChild(await render_header());
+  footer.appendChild(await render_footer());
+
   if (location.pathname == "/") {
-    await setTimeout(removeLoader, 2000);
     let page = await import("./pages/home.js");
     let render = await page.render();
     app.appendChild(await render);
@@ -20,7 +28,6 @@ async function init_app() {
     await page.callback();
   }
   if (location.pathname.includes("products")) {
-    await setTimeout(removeLoader, 2000);
     let page = await import("./pages/products.js");
     let render = await page.render();
     app.appendChild(await render);
@@ -29,7 +36,6 @@ async function init_app() {
     await page.side_bar();
   }
   if (location.pathname.includes("about")) {
-    await setTimeout(removeLoader, 2000);
     let page = await import("./pages/about.js");
     let render = await page.render();
     app.appendChild(await render);
@@ -38,15 +44,14 @@ async function init_app() {
     await page.callback();
   }
   if (location.pathname.includes("contact")) {
-    await setTimeout(removeLoader, 2000);
     let page = await import("./pages/contact.js");
     let render = await page.render();
     app.appendChild(await render);
     await main();
     await renderIcon();
+    await page.callback();
   }
   if (location.pathname.includes("cart")) {
-    await setTimeout(removeLoader, 2000);
     let page = await import("./pages/cart.js");
     let render = await page.render();
     app.appendChild(await render);
@@ -62,7 +67,6 @@ async function init_app() {
       end_point: endPoint.cake + "/" + pathname,
       method: "GET",
       async callback(params) {
-        await setTimeout(removeLoader, 2000);
         let page = await import("./pages/product_detail.js");
         let render = await page.render(params);
         app.appendChild(await render);
@@ -70,6 +74,7 @@ async function init_app() {
         await page.render_cake_img();
         await renderIcon();
         await page.callback(params);
+        await page.remove();
       },
     };
     await fetch_data(get_products_by_id);
