@@ -1181,7 +1181,7 @@ section:first-child {
 }
 
 @media (max-width:1023px) {
-    .products_details_page .container {
+    .products_details_page .products-container {
         display: block;
     }
 
