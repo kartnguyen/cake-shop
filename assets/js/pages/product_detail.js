@@ -37,7 +37,10 @@ export async function render(params) {
       </div>
     </div>
     <div class="container">
-      <div class="related owl-carousel owl-theme"></div>
+      <div class="related-pro">
+        <h2 class="name-products">Các sản phẩm liên quan</h2>
+        <div class="related owl-carousel owl-theme"></div>
+      </div>
     </div>
 	`;
 
@@ -57,6 +60,7 @@ export async function render(params) {
     method: "GET",
     async callback(params) {
       await render_products(params);
+      await render_related();
     },
   };
   async function render_products(params) {
@@ -174,14 +178,14 @@ export async function callback(params) {
           }
         });
       } else {
-        notice.classList.add("notice", "animated", "tada");
+        notice.classList.add("notice", "animated", "fadeInRightBig");
         notice.innerHTML = `Đã thêm ${cake_input} bánh vào giỏ hàng`;
 
         cart_value.forEach(function (item) {
           item.classList.add("show");
           item.textContent = cake_value;
           document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
-          item.appendChild(notice);
+          document.querySelector('header').appendChild(notice);
         });
       }
       setTimeout(() => {
@@ -194,10 +198,9 @@ export async function remove() {
   await removeLoader();
 }
 
-export async function render_related() {
+async function render_related() {
   $(".related").owlCarousel({
     loop: true,
-    autoplay: true,
     margin: 15,
     nav: true,
     responsive: {

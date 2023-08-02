@@ -78,7 +78,6 @@ async function init_app() {
       },
     };
     await fetch_data(get_products_by_id);
-    await page.render_related();
   }
 }
 init_app();

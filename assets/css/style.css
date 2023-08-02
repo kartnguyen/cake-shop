@@ -138,17 +138,18 @@ nav {
 
 .notice {
     position: absolute;
-    top: 30px;
-    left: -55px;
-    padding: 14px;
+    top: 66px;
+    right: 16px;
+    padding: 20px 12px;
     border: 1px solid gray;
     font-size: .8rem;
-    width: 108px;
+    width: 250px;
     border-radius: 4px;
-    color: #fff;
+    color: #111;
     text-align: center;
-    background-color: var(--primary);
+    background-color: #fff;
     text-transform: capitalize;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
 .nav-bar a,
@@ -1111,6 +1112,19 @@ section:first-child {
 .products_details_page .content p {
     line-height: 1.8;
 }
+
+.products_details_page .name-products {
+    margin-top: 48px;
+    font-family: 'Dancing Script', cursive;
+    text-transform: uppercase;
+    font-size: 42px;
+    color: var(--primary);
+}
+
+.products_details_page .related-pro {
+    padding: 36px 16px 0 16px;
+}
+
 .products_details_page .related .item {
     background-color: #F6F6F6;
     border-radius: 8px;
@@ -1209,6 +1223,19 @@ section:first-child {
     .about_page .head_img .img,
     .about_page .chef img {
         width: 100%;
+    }
+
+    .products_details_page .name-products {
+        margin-top: 16px;
+        font-size: 24px;
+    }
+
+    .products_details_page .related .item h3 {
+        font-size: 16px;
+    }
+
+    .products_details_page .related .item h4 {
+        font-size: 14px;
     }
 }
 
