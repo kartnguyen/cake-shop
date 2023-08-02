@@ -138,7 +138,5 @@ export async function render() {
 }
 
 export async function callback() {
-  setTimeout(() => {
-    removeLoader()
-  },2000);
+  await removeLoader();
 }
