@@ -126,7 +126,9 @@ export async function render() {
 }
 
 export async function side_bar() {
-  await removeLoader();
+  setTimeout(() => {
+    removeLoader()
+  },2000);
   window.addEventListener("scroll", function () {
     var side_bar = document.querySelector(".side_bar");
 

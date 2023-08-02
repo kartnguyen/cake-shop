@@ -196,7 +196,9 @@ export async function callback(params) {
   });
 }
 export async function remove() {
-  await removeLoader();
+  setTimeout(() => {
+    removeLoader()
+  },2000);
 }
 
 async function render_related() {

@@ -366,7 +366,9 @@ export async function render() {
 }
 
 export async function callback() {
-  await removeLoader();
+  setTimeout(() => {
+    removeLoader()
+  },2000);
   let name = document.querySelector(".delivery .name"),
     phone = document.querySelector(".delivery .phone"),
     email = document.querySelector(".delivery .email"),

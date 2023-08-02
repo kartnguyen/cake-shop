@@ -120,7 +120,9 @@ export async function render() {
 }
 
 export async function callback() {
-  await removeLoader();
+  setTimeout(() => {
+    removeLoader()
+  },2000);
   $(".slide-img").owlCarousel({
     items: 1,
     nav: false,
