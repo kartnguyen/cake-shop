@@ -1301,7 +1301,6 @@ section:first-child {
 .cart_page .cart_obj .cake {
     padding-right: 34px;
     overflow: auto;
-    height: 220px;
 }
 
 .cart_page .cart_obj .cake_item {
@@ -1369,13 +1368,24 @@ section:first-child {
 }
 
 .cart_page .cart_obj .order_item .item {
-    padding-right: 16px;
     margin: 12px 0;
     font-size: 18px;
     display: flex;
     align-items: start;
     justify-content: space-between;
 }
+
+.cart_page .cart_obj .order_item .hr-container {
+    text-align: right;
+    width: 100%;
+}
+
+.cart_page .cart_obj .order_item .hr-line {
+    width: 30%;
+    height: 1px;
+    background-color: black;
+    margin-left: auto;
+  }
 
 .cart_obj .information .delivery .item {
     cursor: pointer;

@@ -100,16 +100,22 @@ export async function render() {
             <h3>Giỏ hàng</h3>
             <div class="order_item">
               <div class="cake"></div>
-              <div style="margin-top:auto">
+              <div style="margin-top:auto; margin-right:16px">
+                <div class="item">
+                  <h4>Tổng giá <span class="qty"></span> sản phẩm : </h4> <span class="ttbill" style="font-weight:bold"></span>
+                </div>
                 <div class="item">
                   <div>
                   <h4>Phí ship : </h4> 
-                  <p style="font-size: 14px; font-style: italic">(Free ship khi mua từ 2 sản phẩm)</p>
+                  <p style="font-size: 14px; font-style: italic; margin-top: 4px">(Free ship khi mua từ 2 sản phẩm)</p>
                   </div>
                   <span class="ship" style="font-weight:bold"></span>
                 </div>
+                <div class="hr-container">
+                  <div class="hr-line"></div>
+                </div>
                 <div class="item">
-                  <h4>Tổng giá <span class="qty"></span> sản phẩm : </h4> <span class="ttbill" style="font-weight:bold"></span>
+                  <h4>Thành tiền:</h4> <span class="allbill" style="font-weight:bold"></span>
                 </div>
               </div>
             </div>
@@ -155,21 +161,35 @@ export async function render() {
       }
       let allTotalPrice = calculateTotalPrice(cart);
 
+      function calculateShippingfee(params) {
+        let totalQuantity=0;
+        for (let key in params) {
+          if (params.hasOwnProperty(key)) {
+            totalQuantity += params[k].quantity;
+          }
+        }
+        return totalQuantity;
+      }
+// lõiĩíaidíaidídíaidiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+      console.log(calculateShippingfee(cart))
       let shippingFee;
-      if (Object.keys(cart).length == 1) {
+      if (calculateShippingfee(cart) == 1) {
         shippingFee = 35000;
       } else {
         shippingFee = 0;
       }
 
-      allTotalPrice += shippingFee;
-      localStorage.setItem("bill", allTotalPrice);
+      let allbill = allTotalPrice + shippingFee;
+      localStorage.setItem("bill", allbill);
       let ttfee = await format_price(shippingFee);
       let ttprice = await format_price(allTotalPrice);
+      let ttallbill = await format_price(allbill);
 
       template.querySelector(".cake").appendChild(bill);
       template.querySelector(".ship").innerHTML = `${ttfee}`;
       template.querySelector(".ttbill").innerHTML = `${ttprice}`;
+      template.querySelector(".allbill").innerHTML = `${ttallbill}`;
+      template.querySelector(".order_item .qty").textContent = calculateShippingfee(cart);
 
       bill.querySelector(".minus").addEventListener("click", function () {
         handleQuantity({
@@ -313,7 +333,6 @@ export async function render() {
         }
       });
     } else {
-      template.querySelector(".order_item .qty").textContent = value;
       cart_value.forEach(function (item) {
         item.classList.add("show");
         item.textContent = cake_value;
@@ -335,6 +354,7 @@ export async function render() {
           template
             .querySelector(".schedule .list")
             .classList.add("show", "animated", "fadeInLeftBig");
+          template.querySelector('.cart_obj .cake').style.height = 'fit-content';
 
           const dateInput = document.querySelector(".schedule .dates");
           const currentDate = new Date();
@@ -347,6 +367,7 @@ export async function render() {
         } else {
           data = "ON";
           checkbox.checked = true;
+          template.querySelector('.cart_obj .cake').style.height = '170px';
           template
             .querySelector(".schedule .list")
             .classList.remove("fadeInLeftBig");
@@ -366,6 +387,11 @@ export async function render() {
 }
 
 export async function callback() {
+  const cart = JSON.parse(localStorage.getItem("cake")) || {};
+  
+  if (Object.keys(cart).length >=3) {
+    document.querySelector('.cart_obj .cake').style.height = '170px';
+  }
   await removeLoader();
   let name = document.querySelector(".delivery .name"),
     phone = document.querySelector(".delivery .phone"),
@@ -415,6 +441,7 @@ export async function callback() {
           errors[params.id].innerHTML = `${params.getAttribute(
             "tag"
           )} không hợp lệ!`;
+          return false;
         } else {
           params.classList.remove("error");
           if (errors[params.id]) {
@@ -435,6 +462,7 @@ export async function callback() {
           errors[params.id].innerHTML = `${params.getAttribute(
             "tag"
           )} không hợp lệ!`;
+          return false;
         } else {
           params.classList.remove("error");
           if (errors[params.id]) {
@@ -457,7 +485,6 @@ export async function callback() {
   if (document.querySelector(".order .confirm")) {
     let confirm = document.querySelector(".order .confirm");
     confirm.addEventListener("click", async function () {
-      document.querySelector(".order .cake").style.height = "fit-content";
       catch_error(name);
       catch_error(phone);
       catch_error(email);
@@ -485,7 +512,6 @@ export async function callback() {
         formattedDate = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
       }
 
-      const cart = JSON.parse(localStorage.getItem("cake")) || {};
       let products_number = 0;
 
       for (let [k, v] of Object.entries(cart)) {
