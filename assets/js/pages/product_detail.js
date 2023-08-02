@@ -12,6 +12,7 @@ export async function render(params) {
   let { id, image, name, content, sub_title, price, quantity, category } =
     params;
   let main_cate = category;
+  let main_id = id;
   let formattedPrice = await format_price(price);
   template.innerHTML = `
   	<div class="container">
@@ -66,7 +67,7 @@ export async function render(params) {
   async function render_products(params) {
     for (let cake of params) {
       let { id, image, name, price, category } = cake;
-      if (main_cate.includes(category[0])) {
+      if (main_cate.includes(category[0]) & id!=main_id) {
         let related_product = document.createElement("div");
         related_product.classList.add("item");
         let formattedPrice = await format_price(price);
