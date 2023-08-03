@@ -170,8 +170,7 @@ export async function render() {
         }
         return totalQuantity;
       }
-// lõiĩíaidíaidídíaidiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
-      console.log(calculateShippingfee(cart))
+
       let shippingFee;
       if (calculateShippingfee(cart) == 1) {
         shippingFee = 35000;
@@ -189,7 +188,6 @@ export async function render() {
       template.querySelector(".ship").innerHTML = `${ttfee}`;
       template.querySelector(".ttbill").innerHTML = `${ttprice}`;
       template.querySelector(".allbill").innerHTML = `${ttallbill}`;
-      template.querySelector(".order_item .qty").textContent = calculateShippingfee(cart);
 
       bill.querySelector(".minus").addEventListener("click", function () {
         handleQuantity({
@@ -335,7 +333,8 @@ export async function render() {
     } else {
       cart_value.forEach(function (item) {
         item.classList.add("show");
-        item.textContent = cake_value;
+        item.textContent = cake_value;   
+        template.querySelector(".order_item .qty").textContent =cake_value;
         document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
       });
     }
