@@ -49,7 +49,7 @@ export async function render() {
         cake;
       let div = document.createElement("div");
       div.classList.add("item");
-      div.setAttribute("cate", category);
+      div.setAttribute("data-cate", category);
       let formattedPrice = await format_price(price);
       div.innerHTML = `
           <a href="/product_detail/${id}">
@@ -67,11 +67,11 @@ export async function render() {
 
       template.querySelector(".products").appendChild(div);
 
-      const divElements = template.querySelectorAll("div[cate]");
+      const divElements = template.querySelectorAll("div[data-cate]");
 
       function filterDivByAttribute(category) {
         const filteredDivs = Array.from(divElements).filter((div) => {
-          const cateAttributeValue = div.getAttribute("cate");
+          const cateAttributeValue = div.getAttribute("data-cate");
           return cateAttributeValue.includes(category);
         });
         return filteredDivs;

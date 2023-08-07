@@ -235,7 +235,6 @@ export async function render() {
         cart[key]["quantity"] = 1;
       }
       cart[key]["total_price"] = cart[key]["price"] * cart[key]["quantity"];
-      
     }
     if (type == "plus") {
       cart[key]["quantity"] += 1;
@@ -517,16 +516,6 @@ export async function callback() {
 
       let products_number = 0;
 
-      for (let [k, v] of Object.entries(cart)) {
-        products_number += 1;
-        let { name, quantity } = v;
-
-        cake["Cake " + products_number] = {
-          name: name,
-          quantity: quantity,
-        };
-      }
-
       if (
         catch_error(name) &
         catch_error(phone) &
@@ -535,11 +524,22 @@ export async function callback() {
         catch_error(address) &
         (typeof method == "string")
       ) {
+
+        let cart_update = JSON.parse(localStorage.getItem("cake"));
+        for (let [k, v] of Object.entries(cart_update)) {
+          products_number += 1;
+          let { name, quantity } = v;
+
+          cake["Cake " + products_number] = {
+            name: name,
+            quantity: quantity,
+          };
+        }
         let order = {
           "Họ tên": name.value,
           "Số điện thoại": phone.value,
-          'Email': email.value,
-          'Quận': district.value,
+          "Email": email.value,
+          "Quận": district.value,
           "Địa chỉ nhà": address.value,
           "Phương án giao hàng": method,
           "Ngày yêu cầu": formattedDate,
@@ -549,8 +549,7 @@ export async function callback() {
         };
 
         localStorage.setItem("order", JSON.stringify(order));
-      }
-      else {
+      } else {
         return false;
       }
       window.location.href = "/checkout";
