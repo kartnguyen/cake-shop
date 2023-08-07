@@ -106,7 +106,7 @@ export async function render() {
                 </div>
                 <div class="item">
                   <div>
-                  <h4>Phí ship : </h4> 
+                  <h4>Phí vận chuyển : </h4> 
                   <p style="font-size: 14px; font-style: italic; margin-top: 4px">(Free ship khi mua từ 2 sản phẩm)</p>
                   </div>
                   <span class="ship" style="font-weight:bold"></span>
@@ -162,7 +162,7 @@ export async function render() {
       let allTotalPrice = calculateTotalPrice(cart);
 
       function calculateShippingfee(params) {
-        let totalQuantity=0;
+        let totalQuantity = 0;
         for (let key in params) {
           if (params.hasOwnProperty(key)) {
             totalQuantity += params[k].quantity;
@@ -235,6 +235,7 @@ export async function render() {
         cart[key]["quantity"] = 1;
       }
       cart[key]["total_price"] = cart[key]["price"] * cart[key]["quantity"];
+      
     }
     if (type == "plus") {
       cart[key]["quantity"] += 1;
@@ -333,8 +334,8 @@ export async function render() {
     } else {
       cart_value.forEach(function (item) {
         item.classList.add("show");
-        item.textContent = cake_value;   
-        template.querySelector(".order_item .qty").textContent =cake_value;
+        item.textContent = cake_value;
+        template.querySelector(".order_item .qty").textContent = cake_value;
         document.querySelector(".navbar-dropdown").style.padding = "9px 16px";
       });
     }
@@ -353,7 +354,8 @@ export async function render() {
           template
             .querySelector(".schedule .list")
             .classList.add("show", "animated", "fadeInLeftBig");
-          template.querySelector('.cart_obj .cake').style.height = 'fit-content';
+          template.querySelector(".cart_obj .cake").style.height =
+            "fit-content";
 
           const dateInput = document.querySelector(".schedule .dates");
           const currentDate = new Date();
@@ -366,7 +368,7 @@ export async function render() {
         } else {
           data = "ON";
           checkbox.checked = true;
-          template.querySelector('.cart_obj .cake').style.height = '170px';
+          template.querySelector(".cart_obj .cake").style.height = "170px";
           template
             .querySelector(".schedule .list")
             .classList.remove("fadeInLeftBig");
@@ -387,9 +389,9 @@ export async function render() {
 
 export async function callback() {
   const cart = JSON.parse(localStorage.getItem("cake")) || {};
-  
-  if (Object.keys(cart).length >=3) {
-    document.querySelector('.cart_obj .cake').style.height = '170px';
+
+  if (Object.keys(cart).length >= 2) {
+    document.querySelector(".cart_obj .cake").style.height = "170px";
   }
   await removeLoader();
   let name = document.querySelector(".delivery .name"),
@@ -509,6 +511,8 @@ export async function callback() {
         const selectedDate = dates.value;
         const dateArray = selectedDate.split("-");
         formattedDate = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
+      } else {
+        formattedDate = "";
       }
 
       let products_number = 0;
@@ -531,12 +535,11 @@ export async function callback() {
         catch_error(address) &
         (typeof method == "string")
       ) {
-
         let order = {
           "Họ tên": name.value,
           "Số điện thoại": phone.value,
-          "Email": email.value,
-          "Quận": district.value,
+          'Email': email.value,
+          'Quận': district.value,
           "Địa chỉ nhà": address.value,
           "Phương án giao hàng": method,
           "Ngày yêu cầu": formattedDate,
@@ -546,41 +549,11 @@ export async function callback() {
         };
 
         localStorage.setItem("order", JSON.stringify(order));
-
-        let overlay = document.createElement("div");
-        overlay.classList.add("overlay");
-        let formattedPrice = await format_price(parseFloat(order["Giá trị đơn hàng"]));
-        let dialog = document.createElement("div");
-        dialog.classList.add("modal");
-        dialog.innerHTML = `
-          <div class="modal_content">
-          <div class="modal_text" style="margin-top: 14px">Đơn hàng đã được tạo thành công.<br>Giá trị đơn hàng là <strong>${formattedPrice}</strong>.<br>
-          Cảm ơn quý khách!</div>
-          <div class="modal_btn">
-            <button class="m_btn btn-primary" id="ok" style="margin: 4px auto;">
-              <a href="/"style="color: #fff">Quay lại trang chủ</a>
-            </button>
-          </div>
-          </div>
-        `;
-        function remove_dialog(params) {
-          params.addEventListener("click", function () {
-            dialog.remove();
-            document.body.classList.remove("overflow-hidden");
-            overlay.remove();
-          });
-        }
-
-        document.body.classList.add("overflow-hidden");
-        document.querySelector("header .row").appendChild(overlay);
-        document.body.appendChild(dialog);
-
-        remove_dialog(dialog.querySelector("#ok"));
-        remove_dialog(document.querySelector(".overlay"));
-        dialog.querySelector("#ok").addEventListener("click", function () {
-          localStorage.clear();
-        });
       }
+      else {
+        return false;
+      }
+      window.location.href = "/checkout";
     });
   }
 }

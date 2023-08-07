@@ -79,5 +79,13 @@ async function init_app() {
     };
     await fetch_data(get_products_by_id);
   }
+  if (location.pathname.includes("checkout")) {
+    let page = await import("./pages/checkout.js");
+    let render = await page.render();
+    app.appendChild(await render);
+    await main();
+    await renderIcon();
+    await page.callback();
+  }
 }
 init_app();
