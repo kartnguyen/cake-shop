@@ -4,7 +4,7 @@ import {
   fetch_data,
   format_price,
   removeLoader,
-  chef
+  chef,
 } from "../components/help.js";
 
 export async function render() {
@@ -39,7 +39,7 @@ export async function render() {
         </div>
         <div class="container chef_infor">
             <div class="about">
-                <h3>Our Chef</h3>
+                <h3>Đầu Bếp Của Chúng Tôi</h3>
                 <p>Các đầu bếp của KarT's House đều đã tốt nghiệp chuyên ngành bánh ngọt Pháp (Diplôme de Pâtisserie)
                  tại Le Cordon Bleu - học viện ẩm thực hàng đầu thế giới với lịch sử gần 130 năm hình thành. 
                  Trải qua nhiều vị trí khác nhau tại các chuỗi bánh lớn ở Hà Nội, 

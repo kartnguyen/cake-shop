@@ -56,9 +56,13 @@ export async function render() {
         </div>
         </section>
         <section>
-        <div class="container title left" style="min-height: 450px;" data-aos="fade-left" data-aos-easing="linear"
+        <div class="container title left" data-aos="fade-left" data-aos-easing="linear"
             data-aos-duration="500">
-            <div class="img" style="background-image: url(./assets/images/cake/cake-7.jpg);"></div>
+            <div class="cake_img">
+              <div class="img" style="background-image: url(./assets/images/cake/cake-7.jpg);"></div>
+              <div class="img" style="background-image: url(./assets/images/cake/cake-9.jpg);"></div>
+              <div class="img" style="background-image: url(./assets/images/cake/cake-2.jpg);"></div>
+            </div>
             <div class="text">
                 <h2 style="color: #A66D56;">Bánh Entremet</h2>
                 <p>Là dòng bánh hiện đại và cao cấp nhất của Pháp, Entremet được tạo nên bởi nhiều tầng kết cấu đặc

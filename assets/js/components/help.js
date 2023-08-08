@@ -30,17 +30,17 @@ export async function removeLoader() {
 
 export const chef = [
   {
-    name: "Tuấn Hưng",
+    name: "Pierre Hermé",
     avatar: "./assets/images/chef/chef_1.jpg",
     job: '"Nghệ sĩ điêu khắc" bánh ngọt',
   },
   {
-    name: "Mỹ Tâm",
+    name: "Elizabeth Falkner",
     avatar: "./assets/images/chef/chef_2.jpg",
     job: "Nữ đầu bếp được yêu mến",
   },
   {
-    name: "Đen Vâu",
+    name: "Gaston Lenôtre",
     avatar: "./assets/images/chef/chef_3.jpg",
     job: "Chuyên gia về bánh ngọt",
   },

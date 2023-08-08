@@ -180,7 +180,13 @@ export async function callback(params) {
         });
       } else {
         notice.classList.add("notice", "animated", "fadeInRightBig");
-        notice.innerHTML = `Đã thêm ${cake_input} bánh vào giỏ hàng`;
+        notice.innerHTML = `
+          <div class="toast">
+            <i class="fa-solid fa-circle-check" style="color: #11fa00;"></i>
+            <span>Đã thêm ${cake_input} bánh vào giỏ hàng</span>
+          </div>
+          <i class="fa-solid fa-xmark"></i>
+          `;
 
         cart_value.forEach(function (item) {
           item.classList.add("show");
@@ -191,7 +197,7 @@ export async function callback(params) {
       }
       setTimeout(() => {
         notice.remove();
-      }, 1700);
+      }, 2000);
     }
   });
 }
