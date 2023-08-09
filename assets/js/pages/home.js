@@ -42,6 +42,7 @@ export async function render() {
                 <div class="item" style="background-image: url(./assets/images/cake/store-1.jpg);"></div>
                 <div class="item" style="background-image: url(./assets/images/cake/store-2.jpg);"></div>
                 <div class="item" style="background-image: url(./assets/images/cake/store-3.jpg);"></div>
+                <div class="item" style="background-image: url(./assets/images/cake/cake-5.jpg);"></div>
             </div>
         </div>
         </section>
@@ -59,43 +60,38 @@ export async function render() {
         <div class="container title left" data-aos="fade-left" data-aos-easing="linear"
             data-aos-duration="500">
             <div class="cake_img">
-              <div class="img" style="background-image: url(./assets/images/cake/cake-7.jpg);"></div>
-              <div class="img" style="background-image: url(./assets/images/cake/cake-9.jpg);"></div>
-              <div class="img" style="background-image: url(./assets/images/cake/cake-2.jpg);"></div>
+              <div class="img" style="background-image: url(./assets/images/cake/cake-4.jpg);"></div>
+              <div class="img" style="background-image: url(./assets/images/cake/cake-6.jpg);"></div>
+              <div class="img" style="background-image: url(./assets/images/cake/cake-1.jpg);"></div>
+              <div class="img" style="background-image: url(./assets/images/cake/cake-8.jpg);"></div>
             </div>
             <div class="text">
-                <h2 style="color: #A66D56;">Bánh Entremet</h2>
-                <p>Là dòng bánh hiện đại và cao cấp nhất của Pháp, Entremet được tạo nên bởi nhiều tầng kết cấu đặc
-                    biệt và những kỹ thuật đòi hỏi tay nghề cao của người Chef. Mỗi chiếc bánh là sự hoà quyện của
-                    những lớp bạt xốp mềm, lớp kem thơm ngậy và hương vị đặc trưng của trái cây tươi.</p>
+              <h2 style="color: #A66D56;">Chất lượng</h2>
+              <p>Để mang lại trải nghiệm đáng nhớ trong từng chiếc bánh, sản phẩm của <b><i>KarT's House</i></b> được
+                  làm từ
+                  những nguyên liệu được chọn lựa cẩn thận và hoàn thiện tỉ mỉ với những tiêu chuẩn cao cấp
+                  nhất.</p>
             </div>
         </div>
         </section>
-        <section>
-        <div class="container title" style="min-height: 420px;" data-aos="fade-right" data-aos-easing="linear"
-            data-aos-duration="500">
-            <div class="content">
-                <div class="text">
-                    <h2>Chất lượng</h2>
-                    <p>Để mang lại trải nghiệm đáng nhớ trong từng chiếc bánh, sản phẩm của <b><i>KarT's House</i></b> được làm từ
-                        những nguyên liệu được chọn lựa cẩn thận và hoàn thiện tỉ mỉ với những tiêu chuẩn cao cấp
-                        nhất.</p>
-                </div>
+        <section style="padding-bottom: 1em">
+          <div class="container title title-up" data-aos="fade-right" data-aos-easing="linear"
+              data-aos-duration="500">
+              <div class="text">
+                  <h2 style="color: #A66D56;">Cho mọi người</h2>
+                  <p>Bánh của <b><i>KarT's House</i></b> được nghiên cứu để phù hợp với khẩu vị của người Việt và luôn được
+                      đóng gói
+                      chỉnh chu để ai cũng có thể nhận về những niềm vui khi bánh được giao tới tận nơi.</p>
+              </div>
+              <div class="cake_img2">
+                <div class="img" style="background-image: url(./assets/images/cake/cake-11.jpg);"></div>
+                <div class="img" style="background-image: url(./assets/images/cake/cake-12.jpg);"></div>
             </div>
-            <div class="img" style="background-image: url(./assets/images/cake/cake-5.jpg);"></div>
-        </div>
+          </div>
         </section>
-        <section>
-        <div class="container title left" style="min-height: 500px;" data-aos="fade-left" data-aos-easing="linear"
-            data-aos-duration="500">
-            <div class="img" style="background-image: url(./assets/images/cake/cake-10.jpg);"></div>
-            <div class="text">
-                <h2 style="color: #A66D56;">Cho mọi người</h2>
-                <p>Bánh của <b><i>KarT's House</i></b> được nghiên cứu để phù hợp với khẩu vị của người Việt và luôn được đóng gói
-                    chỉnh chu để ai cũng có thể nhận về những niềm vui khi bánh được giao tới tận nơi.</p>
-            </div>
+        <div class="ship_img container animated infinite bounce">
+          <img src="/assets/images/ship.jpg">
         </div>
-        </section>
     `;
 
   async function render_products(params) {
