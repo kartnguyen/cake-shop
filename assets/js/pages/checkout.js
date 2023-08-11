@@ -29,7 +29,7 @@ export async function render() {
                 </div>
                 <div class="order_item">
                     <p style="text-decoration: underline">Địa chỉ giao hàng</p>
-                    <p>${order["Địa chỉ nhà"]},Quận ${order["Quận"]}</p>
+                    <p>${order["Địa chỉ nhà"]}, Quận ${order["Quận"]}</p>
                 </div>
                 <div class="order_item">
                     <p style="text-decoration: underline">Thời gian</p>
