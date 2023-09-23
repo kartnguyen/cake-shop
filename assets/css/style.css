@@ -1008,7 +1008,7 @@ section:first-child {
     .products_page .side_bar.sticky {
         position: fixed;
         top: 66px;
-        z-index: 111;
+        z-index: 8;
     }
 
     .products_page .products {
