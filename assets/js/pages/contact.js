@@ -11,6 +11,7 @@ export async function render() {
   template.classList.add("contact_page");
   template.innerHTML = `
   <div class="container">
+    <h1 class="title">kết nối với KarT's House</h1>
     <div class="contact_form">
         <div class="form">
             <div class="list">
@@ -127,10 +128,10 @@ export async function render() {
 
       remove_dialog(dialog.querySelector("#ok"));
       remove_dialog(document.querySelector(".overlay"));
-      dialog.querySelector("#ok").addEventListener('click',function () {
-        template.querySelector(".name").value = '';
-        template.querySelector(".email").value = '';
-      })
+      dialog.querySelector("#ok").addEventListener("click", function () {
+        template.querySelector(".name").value = "";
+        template.querySelector(".email").value = "";
+      });
     }
   });
 

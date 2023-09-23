@@ -147,7 +147,10 @@ export async function callback() {
         items: 4,
       },
     },
-    navText: ['<i class="fa-solid fa-chevron-left"></i>','<i class="fa-solid fa-chevron-right"></i>']
+    navText: [
+      '<i class="fa-solid fa-chevron-left"></i>',
+      '<i class="fa-solid fa-chevron-right"></i>',
+    ],
   });
 
   AOS.init();

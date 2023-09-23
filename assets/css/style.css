@@ -169,10 +169,12 @@ nav {
         width: 0%;
     }
 }
+
 .notice .toast {
     display: flex;
     align-items: center;
 }
+
 .notice .toast i {
     font-size: 1.5em;
 }
@@ -564,8 +566,10 @@ section:first-child {
     background-size: cover;
     height: 100%;
     aspect-ratio: 16/9;
-    border-top-left-radius: 48px;
+    border-top-left-radius: 49px;
+    transform: translateX(-2px);
 }
+
 .home_page .title .cake_img {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -580,19 +584,19 @@ section:first-child {
     grid-row: 4 / span 3;
 }
 
-.home_page .title .cake_img .img:nth-child(2){
+.home_page .title .cake_img .img:nth-child(2) {
     grid-column: 3 / span 1;
     grid-row: 1 / span 3;
 }
 
-.home_page .title .cake_img .img:nth-child(3){
+.home_page .title .cake_img .img:nth-child(3) {
     grid-column: 1 / span 2;
     grid-row: 1 / span 3;
 }
 
 .home_page .title .cake_img .img:last-child {
     grid-column: 2 / span 2;
-    grid-row: 4 / span 3; 
+    grid-row: 4 / span 3;
 }
 
 .home_page .cake_img .img {
@@ -611,7 +615,7 @@ section:first-child {
     gap: 60px;
 }
 
-.home_page .cake_img2 .img  {
+.home_page .cake_img2 .img {
     background: #fff no-repeat center;
     background-size: cover;
     border-radius: 24px;
@@ -622,10 +626,11 @@ section:first-child {
     grid-row: 1 / span 2;
 }
 
-.home_page .title .cake_img2 .img:nth-child(2){
+.home_page .title .cake_img2 .img:nth-child(2) {
     grid-column: 2 / span 1;
     grid-row: 2 / span 2;
 }
+
 .home_page .cake_img2::before {
     position: absolute;
     content: "";
@@ -760,6 +765,7 @@ section:first-child {
     position: relative;
     overflow: hidden;
 }
+
 .home_page .ship_img img {
     height: 100%;
     bottom: -10px;
@@ -767,19 +773,24 @@ section:first-child {
     animation: run 10s linear infinite;
     display: block;
 }
+
 @keyframes run {
     0% {
         transform: translateX(-100px);
         opacity: 0.5;
     }
-    5%,95% {
+
+    5%,
+    95% {
         opacity: 1;
     }
+
     100% {
         transform: translateX(calc(100vw - 100px));
         opacity: 0.5;
     }
 }
+
 @media (max-width:1023px) {
     .home_page .title {
         display: block;
@@ -807,18 +818,22 @@ section:first-child {
     .home_page .name-products {
         margin-top: 16px;
     }
+
     .home_page .title .item {
         border-radius: 12px;
     }
+
     .home_page .title .cake_img2 {
         height: 300px;
     }
+
     .home_page .title-up {
         display: flex;
         flex-direction: column-reverse;
         gap: 8px;
         padding-top: 3em;
     }
+
     .home_page .title .cake_img {
         height: 300px;
     }
@@ -828,6 +843,27 @@ section:first-child {
 
 .products_page {
     padding-top: 8em;
+}
+
+.products_page .head {
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 40px;
+}
+
+.products_page .head h1 {
+    text-transform: uppercase;
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    padding-bottom: 14px;
+    color: var(--primary);
+}
+
+.products_page .head p {
+    font-size: 16px;
+    color: grey;
+    line-height: 1.6;
 }
 
 .products_page li {
@@ -883,8 +919,11 @@ section:first-child {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.products_page .item:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-.products_page .item h3:hover {
+.products_page .item:hover h3 {
     color: var(--secondary);
 }
 
@@ -933,6 +972,10 @@ section:first-child {
         display: block;
     }
 
+    .products_page .head {
+        width: 100%;
+    }
+
     .products_page .side_container {
         display: flex;
         position: relative;
@@ -943,7 +986,7 @@ section:first-child {
     }
 
     .products_page .side_bar {
-        width: 300px;
+        width: 300px !important;
         border-radius: 14px;
         padding: 12px;
         background-color: #F6F6F6;
@@ -1372,7 +1415,7 @@ section:first-child {
     .about_page .about h3 {
         font-size: 38px;
     }
-    
+
     .about_page .head_img .img,
     .about_page .chef img {
         width: 100%;
@@ -1951,6 +1994,15 @@ section:first-child {
 /* ---------------------------contact--------------------------- */
 .contact_page {
     padding-bottom: 4em;
+}
+
+.contact_page .title {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Dancing Script', cursive;
+    font-size: 36px;
+    padding-bottom: 44px;
+    color: var(--primary);
 }
 
 .contact_page .form {

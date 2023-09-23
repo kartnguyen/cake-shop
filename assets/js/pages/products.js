@@ -3,7 +3,7 @@ import {
   endPoint,
   fetch_data,
   format_price,
-  removeLoader
+  removeLoader,
 } from "../components/help.js";
 
 export async function render() {
@@ -20,6 +20,10 @@ export async function render() {
   template.classList.add("products_page");
   template.innerHTML = `
   <div class="container">
+    <div class="head">
+      <h1>Bánh sinh nhật</h1>
+      <p>Sản phẩm đặc trưng của <b><i>KarT's House</i></b> là bánh Entremet – dòng bánh lạnh cao cấp nhất của Pháp, với sự hài hoà của các tầng hương vị và kết cấu đặc biệt trong từng chiếc bánh.</p>
+    </div>
     <div class="grid">
       <div class="side_container">
         <div class="side_bar">
@@ -119,7 +123,7 @@ export async function render() {
 
   document.querySelector(".nav-bar a.active").classList.remove("active");
   document.querySelector(".nav-bar .products").classList.add("active");
-  
+
   await fetch_data(get_products);
 
   return template;
@@ -133,7 +137,7 @@ export async function side_bar() {
     var elementWidth = side_bar.offsetWidth;
     var scrollPosition = window.scrollY;
 
-    if (scrollPosition > 0) {
+    if (scrollPosition > 220) {
       side_bar.classList.add("sticky");
       document.querySelector(".side_bar").style.width = elementWidth + "px";
     } else {
